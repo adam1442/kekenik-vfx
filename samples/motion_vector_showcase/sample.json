@@ -1,0 +1,84 @@
+{
+ "id": "motion_vector_showcase",
+ "version": 1,
+ "category": [
+  "flipbooks",
+  "simulation"
+ ],
+ "tags": [
+  "motion",
+  "vector",
+  "flipbook",
+  "loop"
+ ],
+ "difficulty": "advanced",
+ "loops": true,
+ "preview": "interp",
+ "thumb": {
+  "node": "tone",
+  "frame": 3
+ },
+ "tour": [
+  {
+   "node": "sheet",
+   "key": "step1"
+  },
+  {
+   "node": "mv",
+   "key": "step2"
+  },
+  {
+   "node": "interp",
+   "key": "step3"
+  }
+ ],
+ "created": "2026-02-01",
+ "i18n": {
+  "en": {
+   "name": "Motion Vector Showcase",
+   "description": "A 12-frame looping flipbook (spinning star + orbiting dot) gets Motion Vectors generated, then Motion Vector Interpolate expands it to 48 smooth frames. The vector flipbook is exported with a sidecar JSON.",
+   "adapt": "Replace the star and orbit with your own 12-frame animation, then raise Count. In the engine use the vector sheet for frame blending with Motion Vector Scale as in the sidecar.",
+   "tags": {
+    "motion": "motion vectors",
+    "vector": "vector field",
+    "flipbook": "flipbook",
+    "loop": "loop"
+   },
+   "frames": {
+    "f_inputs": "Inputs",
+    "f_shape": "Shape",
+    "f_color": "Color",
+    "f_output": "Output",
+    "f_motion": "Motion"
+   },
+   "tour": {
+    "step1": "The source flipbook: 12 frames, 4×3.",
+    "step2": "Generate motion vectors between frames.",
+    "step3": "Expand to 48 frames."
+   }
+  },
+  "fa": {
+   "name": "نمایش بردار حرکت",
+   "description": "یک فلیپ‌بوک لوپ ۱۲ فریمی (ستاره چرخان + نقطه در مدار) بردار حرکت می‌گیرد و Motion Vector Interpolate آن را به ۴۸ فریم نرم می‌رساند. فلیپ‌بوک برداری همراه فایل JSON جانبی خروجی می‌گیرد.",
+   "adapt": "ستاره و مدار را با انیمیشن ۱۲ فریمی خودتان جایگزین و سپس Count را زیاد کنید. در موتور شیت برداری را با مقیاس ذکرشده در JSON جانبی برای ترکیب فریم‌ها به‌کار ببرید.",
+   "tags": {
+    "motion": "بردار حرکت",
+    "vector": "میدان برداری",
+    "flipbook": "فلیپ‌بوک",
+    "loop": "لوپ"
+   },
+   "frames": {
+    "f_inputs": "ورودی‌ها",
+    "f_shape": "شکل",
+    "f_color": "رنگ",
+    "f_output": "خروجی",
+    "f_motion": "حرکت"
+   },
+   "tour": {
+    "step1": "فلیپ‌بوک منبع: ۱۲ فریم، ۴×۳.",
+    "step2": "تولید بردار حرکت بین فریم‌ها.",
+    "step3": "گسترش به ۴۸ فریم."
+   }
+  }
+ }
+}

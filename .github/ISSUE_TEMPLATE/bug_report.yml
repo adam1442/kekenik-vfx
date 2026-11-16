@@ -1,0 +1,59 @@
+name: Bug report
+description: Something does not work as expected
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a problem. For GPU or startup problems please paste the diagnostics text
+        (GPU Diagnostics screen → **Copy diagnostics**, or Help → Console).
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the problem and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open the sample ...
+        2. Add the node ...
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: GPU diagnostics
+      description: Paste the text produced by "Copy diagnostics".
+      render: text
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: Chrome 126, Edge 126, Firefox 141, Safari 26 ...
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Operating system and GPU
+      placeholder: Windows 11, NVIDIA RTX 3060
+  - type: dropdown
+    id: version
+    attributes:
+      label: Where did you run it?
+      options:
+        - Hosted version (GitHub Pages)
+        - Local build (npm run dev / preview)
+        - Release zip
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Extra context
+      description: Screenshots, a project file (.kvfx) or console errors help a lot.

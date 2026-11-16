@@ -1,0 +1,80 @@
+{
+ "id": "sword_slash_arc",
+ "version": 1,
+ "category": [
+  "weapons",
+  "meshes"
+ ],
+ "tags": [
+  "slash",
+  "sword",
+  "mesh",
+  "sweep",
+  "spline",
+  "loop"
+ ],
+ "difficulty": "intermediate",
+ "loops": true,
+ "preview": "tex",
+ "thumb": {
+  "node": "tex",
+  "frame": 12
+ },
+ "view": {
+  "mesh": "sweep",
+  "material": "tex",
+  "mat": {
+   "blend": "additive",
+   "doubleSided": true,
+   "scroll": [
+    -0.8,
+    0
+   ]
+  },
+  "display": "unlit"
+ },
+ "tour": [],
+ "created": "2026-02-01",
+ "i18n": {
+  "en": {
+   "name": "Sword Slash Arc",
+   "description": "An arc path is swept with a tapered custom ribbon profile. The mask texture is a crescent multiplied by panning noise; the 3D viewport scrolls the UVs. Exports the mesh and the mask.",
+   "adapt": "Change the arc angles in the 3D spline, the Scale curve (taper) and the crescent size. Pan speed = Offset keyframes.",
+   "tags": {
+    "slash": "slash",
+    "sword": "sword",
+    "mesh": "mesh",
+    "sweep": "sweep",
+    "spline": "spline",
+    "loop": "loop"
+   },
+   "frames": {
+    "f_mesh": "Mesh",
+    "f_shape": "Shape",
+    "f_color": "Color",
+    "f_output": "Output"
+   },
+   "tour": {}
+  },
+  "fa": {
+   "name": "قوس ضربه شمشیر",
+   "description": "یک مسیر کمانی با پروفایل نواری سفارشی و باریک‌شونده سوئیپ می‌شود. تکسچر ماسک یک هلال ضرب‌شده در نویز متحرک است و ویوپورت سه‌بعدی UVها را اسکرول می‌کند. خروجی: مش و ماسک.",
+   "adapt": "زاویه کمان را در اسپلاین سه‌بعدی، منحنی مقیاس (باریک‌شدن) و اندازه هلال را عوض کنید. سرعت پن = کلیدهای Offset.",
+   "tags": {
+    "slash": "ضربه شمشیر",
+    "sword": "شمشیر",
+    "mesh": "مش",
+    "sweep": "سوئیپ",
+    "spline": "اسپلاین",
+    "loop": "لوپ"
+   },
+   "frames": {
+    "f_mesh": "مش",
+    "f_shape": "شکل",
+    "f_color": "رنگ",
+    "f_output": "خروجی"
+   },
+   "tour": {}
+  }
+ }
+}

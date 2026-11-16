@@ -1,0 +1,21 @@
+/* 3D viewport */
+.k-vp3 { display: flex; flex-direction: column; height: 100%; min-height: 0; background: var(--bg0, #0e0f12); }
+.k-vp3 .k-toolrow { flex-wrap: wrap; row-gap: 0.25rem; }
+.k-vp3-stage { position: relative; flex: 1; min-height: 0; overflow: hidden; background: #15171b; }
+.k-vp3-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.k-vp3-stage canvas.ov { outline: none; touch-action: none; }
+.k-vp3-stage .err { position: absolute; left: 0.5rem; right: 0.5rem; top: 0.5rem; z-index: 3; pointer-events: none; white-space: pre-wrap; }
+.k-vp3-stage .msg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--dim); font-size: var(--fs-sm); pointer-events: none; text-align: center; padding: 1rem; }
+.k-vp3-stats { position: absolute; left: 0.6rem; top: 0.5rem; z-index: 2; pointer-events: none; font: 0.917rem/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--text); text-shadow: 0 1px 0.167rem #000c; }
+.k-vp3-stats .dim { color: var(--dim); }
+.k-vp3-stats .note { color: #ffd54a; }
+.k-vp3-stats b { font-weight: 600; }
+.k-vp3-readout { position: absolute; right: 0.8rem; bottom: 0.8rem; z-index: 3; pointer-events: none; padding: 0.2rem 0.55rem; background: rgba(16, 17, 20, 0.92); border: 1px solid var(--accent2, #6c7bff); border-radius: 0.333rem; font: 1rem ui-monospace, monospace; color: var(--text); }
+.k-vp3-mat { position: absolute; right: 0.6rem; top: 0.5rem; z-index: 4; width: 17rem; max-height: calc(100% - 1rem); overflow: auto; background: rgba(22, 24, 28, 0.96); border: 1px solid var(--line); border-radius: 0.417rem; padding: 0.5rem 0.6rem; box-shadow: 0 0.667rem 2rem #000a; font-size: var(--fs-xs); }
+.k-vp3-mat .title { font-weight: 600; margin-bottom: 0.4rem; color: var(--text); }
+.k-vp3-mat .row { display: grid; grid-template-columns: 6.2rem 1fr; align-items: center; gap: 0.3rem; margin: 0.18rem 0; }
+.k-vp3-mat .row label { color: var(--dim); }
+.k-vp3-mat .row > .k-drop { width: 100%; }
+.k-vp3-mat .sl { display: flex; align-items: center; gap: 0.35rem; }
+.k-vp3-mat .sl input[type=range] { flex: 1; min-width: 0; accent-color: var(--accent); }
+.k-vp3-mat .sl .val { width: 2.4rem; text-align: right; color: var(--dim); font-family: ui-monospace, monospace; }

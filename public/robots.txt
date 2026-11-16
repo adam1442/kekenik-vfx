@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://adam1442.github.io/kekenik-vfx/sitemap.xml

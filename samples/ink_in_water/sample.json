@@ -1,0 +1,64 @@
+{
+ "id": "ink_in_water",
+ "version": 1,
+ "category": [
+  "water",
+  "tiling",
+  "simulation"
+ ],
+ "tags": [
+  "ink",
+  "fluid",
+  "tileable",
+  "water",
+  "simulation"
+ ],
+ "difficulty": "intermediate",
+ "preview": "tiles",
+ "thumb": {
+  "node": "paper",
+  "frame": 45
+ },
+ "tour": [],
+ "created": "2026-02-01",
+ "i18n": {
+  "en": {
+   "name": "Ink in Water (tileable)",
+   "description": "Slow viscous fluid with two swirling emitters and periodic boundaries, so the ink wraps around the edges: a tileable paper-and-ink background plus a density mask.",
+   "adapt": "Move the two emitters and the Swirl, change the ink colours in the Ramp, scrub the timeline to pick the frame you like and export it.",
+   "tags": {
+    "ink": "ink",
+    "fluid": "fluid",
+    "tileable": "tileable",
+    "water": "water",
+    "simulation": "simulation"
+   },
+   "frames": {
+    "f_sim": "Simulation",
+    "f_color": "Color",
+    "f_shape": "Shape",
+    "f_output": "Output"
+   },
+   "tour": {}
+  },
+  "fa": {
+   "name": "جوهر در آب (کاشی‌پذیر)",
+   "description": "سیال کند و چسبناک با دو منبع چرخان و مرز دوره‌ای؛ جوهر از لبه‌ها عبور می‌کند. پس‌زمینه کاشی‌پذیر کاغذ و جوهر به‌همراه ماسک چگالی.",
+   "adapt": "دو منبع و گردابه را جابه‌جا کنید، رنگ جوهر را در رمپ عوض کنید و روی تایم‌لاین فریم دلخواه را انتخاب و خروجی بگیرید.",
+   "tags": {
+    "ink": "جوهر",
+    "fluid": "سیال",
+    "tileable": "کاشی‌پذیر",
+    "water": "آب",
+    "simulation": "شبیه‌سازی"
+   },
+   "frames": {
+    "f_sim": "شبیه‌سازی",
+    "f_color": "رنگ",
+    "f_shape": "شکل",
+    "f_output": "خروجی"
+   },
+   "tour": {}
+  }
+ }
+}

@@ -1,0 +1,82 @@
+{
+ "id": "burn_dissolve_reveal",
+ "version": 1,
+ "category": [
+  "fire",
+  "environment",
+  "simulation",
+  "flipbooks"
+ ],
+ "tags": [
+  "burn",
+  "dissolve",
+  "fire",
+  "simulation",
+  "flipbook"
+ ],
+ "difficulty": "intermediate",
+ "preview": "comp",
+ "thumb": {
+  "node": "comp",
+  "frame": 50
+ },
+ "tour": [
+  {
+   "node": "burn",
+   "key": "step1"
+  },
+  {
+   "node": "exportTime",
+   "key": "step2"
+  }
+ ],
+ "created": "2026-02-01",
+ "i18n": {
+  "en": {
+   "name": "Burn / Dissolve Reveal",
+   "description": "Dissolve / Burn Front spreads from the centre with a noise-modulated speed. The burned mask reveals the paper, the edge glow is mapped to fire colours. Exports a threshold-animation flipbook and a time-to-burn map.",
+   "adapt": "Use the Time-to-burn map as a Dissolve threshold in your material: animate one scalar from 0 to 1. Change ignition point or wind for directional burns.",
+   "tags": {
+    "burn": "burn",
+    "dissolve": "dissolve",
+    "fire": "fire",
+    "simulation": "simulation",
+    "flipbook": "flipbook"
+   },
+   "frames": {
+    "f_inputs": "Inputs",
+    "f_sim": "Simulation",
+    "f_color": "Color",
+    "f_shape": "Shape",
+    "f_output": "Output"
+   },
+   "tour": {
+    "step1": "Front speed is modulated by noise and height.",
+    "step2": "Time-to-burn: a ready-made dissolve threshold."
+   }
+  },
+  "fa": {
+   "name": "نمایش با سوختن / حل‌شدن",
+   "description": "جبهه سوختن / حل‌شدن از مرکز با سرعت تعدیل‌شده با نویز پخش می‌شود. ماسک سوخته کاغذ را آشکار می‌کند و درخشش لبه به رنگ آتش نگاشت می‌شود. خروجی: فلیپ‌بوک انیمیشن آستانه و نقشه زمان‌سوختن.",
+   "adapt": "نقشه زمان‌سوختن را به‌عنوان آستانه Dissolve در متریال استفاده کنید: یک عدد از ۰ تا ۱ انیمیت می‌شود. نقطه آتش یا باد را برای سوختن جهت‌دار تغییر دهید.",
+   "tags": {
+    "burn": "سوختن",
+    "dissolve": "حل‌شدن",
+    "fire": "آتش",
+    "simulation": "شبیه‌سازی",
+    "flipbook": "فلیپ‌بوک"
+   },
+   "frames": {
+    "f_inputs": "ورودی‌ها",
+    "f_sim": "شبیه‌سازی",
+    "f_color": "رنگ",
+    "f_shape": "شکل",
+    "f_output": "خروجی"
+   },
+   "tour": {
+    "step1": "سرعت جبهه با نویز و ارتفاع تعدیل می‌شود.",
+    "step2": "زمان‌سوختن: یک آستانه آماده برای Dissolve."
+   }
+  }
+ }
+}

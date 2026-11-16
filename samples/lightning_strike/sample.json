@@ -1,0 +1,94 @@
+{
+ "id": "lightning_strike",
+ "version": 1,
+ "category": [
+  "lightning",
+  "energy",
+  "meshes"
+ ],
+ "tags": [
+  "lightning",
+  "spline",
+  "mesh",
+  "sweep",
+  "loop",
+  "flipbook"
+ ],
+ "difficulty": "intermediate",
+ "loops": true,
+ "preview": "color",
+ "thumb": {
+  "node": "color",
+  "frame": 2
+ },
+ "view": {
+  "mesh": "xf",
+  "material": "color",
+  "mat": {
+   "blend": "additive",
+   "doubleSided": true
+  },
+  "display": "unlit"
+ },
+ "tour": [
+  {
+   "node": "bolt",
+   "key": "step1"
+  },
+  {
+   "node": "sweep",
+   "key": "step2"
+  }
+ ],
+ "created": "2026-02-01",
+ "i18n": {
+  "en": {
+   "name": "Lightning Strike",
+   "description": "The Lightning node produces a mask and a Spline. The spline is drawn into a core + glow mask texture and swept into a 3D bolt mesh with a custom Profile. Flicker loops every 8 frames.",
+   "adapt": "Change Seed / Jaggedness / Branches on the Lightning node. Everything downstream follows, textures and mesh.",
+   "tags": {
+    "lightning": "lightning",
+    "spline": "spline",
+    "mesh": "mesh",
+    "sweep": "sweep",
+    "loop": "loop",
+    "flipbook": "flipbook"
+   },
+   "frames": {
+    "f_sim": "Simulation",
+    "f_shape": "Shape",
+    "f_color": "Color",
+    "f_mesh": "Mesh",
+    "f_output": "Output"
+   },
+   "tour": {
+    "step1": "Lightning outputs a mask and a Spline.",
+    "step2": "Sweep: Spline Path + custom Profile pin."
+   }
+  },
+  "fa": {
+   "name": "صاعقه",
+   "description": "گره صاعقه یک ماسک و یک اسپلاین می‌دهد. اسپلاین به ماسک هسته + درخشش رسم می‌شود و با یک پروفایل سفارشی به مش سه‌بعدی صاعقه سوئیپ می‌شود. سوسو هر ۸ فریم تکرار می‌شود.",
+   "adapt": "Seed، ناهمواری و شاخه‌ها را در گره Lightning عوض کنید؛ همه چیز بعد از آن (تکسچر و مش) دنبال می‌کند.",
+   "tags": {
+    "lightning": "رعد و برق",
+    "spline": "اسپلاین",
+    "mesh": "مش",
+    "sweep": "سوئیپ",
+    "loop": "لوپ",
+    "flipbook": "فلیپ‌بوک"
+   },
+   "frames": {
+    "f_sim": "شبیه‌سازی",
+    "f_shape": "شکل",
+    "f_color": "رنگ",
+    "f_mesh": "مش",
+    "f_output": "خروجی"
+   },
+   "tour": {
+    "step1": "صاعقه یک ماسک و یک اسپلاین می‌دهد.",
+    "step2": "سوئیپ: مسیر اسپلاین + پین پروفایل سفارشی."
+   }
+  }
+ }
+}

@@ -1,0 +1,86 @@
+{
+ "id": "smoke_puff_loop",
+ "version": 1,
+ "category": [
+  "fire",
+  "flipbooks",
+  "simulation"
+ ],
+ "tags": [
+  "smoke",
+  "fluid",
+  "loop",
+  "flipbook",
+  "normal"
+ ],
+ "difficulty": "intermediate",
+ "loops": true,
+ "preview": "out",
+ "thumb": {
+  "node": "out",
+  "frame": 40
+ },
+ "tour": [
+  {
+   "node": "fluid",
+   "key": "step1"
+  },
+  {
+   "node": "normals",
+   "key": "step2"
+  },
+  {
+   "node": "out",
+   "key": "step3"
+  }
+ ],
+ "created": "2026-02-01",
+ "i18n": {
+  "en": {
+   "name": "Rising Smoke Puff (looping flipbook)",
+   "description": "Fluid 2D smoke. Density becomes alpha, and the density height-field normal gives a soft directional light, baked as an 8×8 looping flipbook with alpha.",
+   "adapt": "Change the light by editing the Light Levels node, the smoke tint in the Ramp, or Turbulence on the fluid.",
+   "tags": {
+    "smoke": "smoke",
+    "fluid": "fluid",
+    "loop": "loop",
+    "flipbook": "flipbook",
+    "normal": "normal map"
+   },
+   "frames": {
+    "f_sim": "Simulation",
+    "f_color": "Color",
+    "f_shape": "Shape",
+    "f_output": "Output"
+   },
+   "tour": {
+    "step1": "Rising Smoke preset, looping with a cross-fade.",
+    "step2": "The fluid exposes a Normal of its density field.",
+    "step3": "Density → alpha merge."
+   }
+  },
+  "fa": {
+   "name": "پف دود صعودی (فلیپ‌بوک لوپ)",
+   "description": "دود سیال دوبعدی. چگالی به آلفا تبدیل می‌شود و نرمال میدان ارتفاع چگالی نور جهت‌دار ملایمی می‌دهد؛ خروجی فلیپ‌بوک ۸×۸ لوپ با آلفا.",
+   "adapt": "نور را با گره Light Levels، رنگ دود را با رمپ و تلاطم را روی سیال تغییر دهید.",
+   "tags": {
+    "smoke": "دود",
+    "fluid": "سیال",
+    "loop": "لوپ",
+    "flipbook": "فلیپ‌بوک",
+    "normal": "نرمال مپ"
+   },
+   "frames": {
+    "f_sim": "شبیه‌سازی",
+    "f_color": "رنگ",
+    "f_shape": "شکل",
+    "f_output": "خروجی"
+   },
+   "tour": {
+    "step1": "پریست دود صعودی با لوپ کراس‌فید.",
+    "step2": "سیال یک نرمال از میدان چگالی خود می‌دهد.",
+    "step3": "چگالی ← ادغام آلفا."
+   }
+  }
+ }
+}

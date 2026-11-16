@@ -1,0 +1,67 @@
+{
+ "id": "magic_vortex_portal",
+ "version": 1,
+ "category": [
+  "magic",
+  "energy",
+  "flipbooks"
+ ],
+ "tags": [
+  "portal",
+  "magic",
+  "vector",
+  "loop",
+  "flipbook"
+ ],
+ "difficulty": "intermediate",
+ "loops": true,
+ "preview": "glow",
+ "thumb": {
+  "node": "glow",
+  "frame": 16
+ },
+ "tour": [],
+ "created": "2026-02-01",
+ "i18n": {
+  "en": {
+   "name": "Magic Vortex Portal",
+   "description": "Polar-scattered rune stars are flow-map advected by a Vector Vortex, faded by a radial mask, coloured with a violet Ramp and bloomed. Loops seamlessly; the result is additive-ready.",
+   "adapt": "Swap the scatter shape, change the vortex strength, or edit the Ramp. Use the Additive blend in your engine.",
+   "tags": {
+    "portal": "portal",
+    "magic": "magic",
+    "vector": "vector field",
+    "loop": "loop",
+    "flipbook": "flipbook"
+   },
+   "frames": {
+    "f_inputs": "Inputs",
+    "f_motion": "Motion",
+    "f_shape": "Shape",
+    "f_color": "Color",
+    "f_output": "Output"
+   },
+   "tour": {}
+  },
+  "fa": {
+   "name": "پورتال گردابه جادویی",
+   "description": "ستاره‌های رونی پراکنده در شبکه قطبی با یک گردابه برداری به‌صورت فلوم‌پ جابه‌جا می‌شوند، با ماسک شعاعی محو و با رمپ بنفش رنگ می‌شوند. بدون درز لوپ می‌شود و برای ترکیب جمعی آماده است.",
+   "adapt": "شکل پراکنش را عوض کنید، قدرت گردابه را تغییر دهید یا رمپ را ویرایش کنید. در موتور بازی از ترکیب Additive استفاده کنید.",
+   "tags": {
+    "portal": "پورتال",
+    "magic": "جادو",
+    "vector": "میدان برداری",
+    "loop": "لوپ",
+    "flipbook": "فلیپ‌بوک"
+   },
+   "frames": {
+    "f_inputs": "ورودی‌ها",
+    "f_motion": "حرکت",
+    "f_shape": "شکل",
+    "f_color": "رنگ",
+    "f_output": "خروجی"
+   },
+   "tour": {}
+  }
+ }
+}

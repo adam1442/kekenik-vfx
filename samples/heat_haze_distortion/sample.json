@@ -1,0 +1,65 @@
+{
+ "id": "heat_haze_distortion",
+ "version": 1,
+ "category": [
+  "fire",
+  "environment",
+  "flipbooks"
+ ],
+ "tags": [
+  "distortion",
+  "warp",
+  "vector",
+  "loop",
+  "flipbook"
+ ],
+ "difficulty": "beginner",
+ "loops": true,
+ "preview": "check",
+ "thumb": {
+  "node": "check",
+  "frame": 10
+ },
+ "tour": [],
+ "created": "2026-02-01",
+ "i18n": {
+  "en": {
+   "name": "Heat Haze Distortion",
+   "description": "Looping Vector Noise, faded toward the border by a radial mask, becomes a UV offset field and is exported as a distortion (warp) map. A grid preview shows the effect.",
+   "adapt": "Increase Strength for stronger shimmer, and keep Range on the export equal to the shader’s distortion scale.",
+   "tags": {
+    "distortion": "distortion",
+    "warp": "warp",
+    "vector": "vector field",
+    "loop": "loop",
+    "flipbook": "flipbook"
+   },
+   "frames": {
+    "f_inputs": "Inputs",
+    "f_motion": "Motion",
+    "f_shape": "Shape",
+    "f_output": "Output"
+   },
+   "tour": {}
+  },
+  "fa": {
+   "name": "اعوجاج گرمایی",
+   "description": "نویز برداری لوپ، که با ماسک شعاعی به سمت لبه محو می‌شود، به میدان جابه‌جایی UV تبدیل و به‌صورت نقشه اعوجاج (وارپ) خروجی می‌گیرد. شبکه پیش‌نمایش اثر را نشان می‌دهد.",
+   "adapt": "برای لرزش قوی‌تر قدرت را زیاد کنید و Range خروجی را برابر مقیاس اعوجاج شیدر نگه دارید.",
+   "tags": {
+    "distortion": "اعوجاج",
+    "warp": "وارپ",
+    "vector": "میدان برداری",
+    "loop": "لوپ",
+    "flipbook": "فلیپ‌بوک"
+   },
+   "frames": {
+    "f_inputs": "ورودی‌ها",
+    "f_motion": "حرکت",
+    "f_shape": "شکل",
+    "f_output": "خروجی"
+   },
+   "tour": {}
+  }
+ }
+}

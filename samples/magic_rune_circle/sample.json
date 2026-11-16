@@ -1,0 +1,65 @@
+{
+ "id": "magic_rune_circle",
+ "version": 1,
+ "category": [
+  "magic",
+  "tiling",
+  "flipbooks"
+ ],
+ "tags": [
+  "rune",
+  "magic",
+  "spline",
+  "tileable",
+  "loop"
+ ],
+ "difficulty": "intermediate",
+ "loops": true,
+ "preview": "color",
+ "thumb": {
+  "node": "color",
+  "frame": 10
+ },
+ "tour": [],
+ "created": "2026-02-01",
+ "i18n": {
+  "en": {
+   "name": "Magic Rune Circle",
+   "description": "Concentric Shape rings, Polar Scatter stars, a hex Grid inside a radial mask and glyph strokes drawn with Spline Shape → Spline. Everything is merged into a tileable mask and given an emissive Ramp.",
+   "adapt": "Add glyphs by combining more Spline Shapes, or switch to the Rune Ring node for generated glyphs. Rotation keyframes loop 360°.",
+   "tags": {
+    "rune": "rune",
+    "magic": "magic",
+    "spline": "spline",
+    "tileable": "tileable",
+    "loop": "loop"
+   },
+   "frames": {
+    "f_shape": "Shape",
+    "f_inputs": "Inputs",
+    "f_color": "Color",
+    "f_output": "Output"
+   },
+   "tour": {}
+  },
+  "fa": {
+   "name": "دایره رون جادویی",
+   "description": "حلقه‌های هم‌مرکز Shape، ستاره‌های Polar Scatter، شبکه شش‌ضلعی داخل ماسک شعاعی و خطوط نماد که با Spline Shape ← Spline رسم شده‌اند. همه در یک ماسک کاشی‌پذیر ادغام و با رمپ نورانی رنگ می‌شوند.",
+   "adapt": "با ترکیب Spline Shape بیشتر نماد اضافه کنید یا برای نمادهای خودکار گره Rune Ring را بگذارید. کلیدهای چرخش ۳۶۰ درجه لوپ می‌شوند.",
+   "tags": {
+    "rune": "رون",
+    "magic": "جادو",
+    "spline": "اسپلاین",
+    "tileable": "کاشی‌پذیر",
+    "loop": "لوپ"
+   },
+   "frames": {
+    "f_shape": "شکل",
+    "f_inputs": "ورودی‌ها",
+    "f_color": "رنگ",
+    "f_output": "خروجی"
+   },
+   "tour": {}
+  }
+ }
+}

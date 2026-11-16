@@ -1,0 +1,19 @@
+.k-ac { display: flex; flex-direction: column; height: 100%; min-height: 0; background: var(--bg-1, #1b1c20); color: var(--text, #cfd2da); font-size: 0.917rem; outline: none; }
+.k-ac-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.333rem; padding: 0.333rem 0.5rem; border-bottom: 1px solid var(--border, #2c2e35); background: var(--bg-2, #212329); }
+.k-ac-bar .sep { width: 1px; height: 1.333rem; background: var(--border, #2c2e35); margin: 0 0.25rem; }
+.k-ac-btn { height: 1.833rem; padding: 0 0.583rem; border: 1px solid var(--border, #2c2e35); background: var(--bg-3, #2a2c33); color: inherit; border-radius: 0.25rem; cursor: pointer; font-size: 0.917rem; }
+.k-ac-btn:hover { background: var(--bg-4, #343742); }
+.k-ac-btn.on, .k-ac-btn.accent { border-color: var(--accent, #6d7cff); }
+.k-ac-btn.on { background: var(--accent-dim, #3a4590); color: #fff; }
+.k-ac-bar select { height: 1.833rem; background: var(--bg-0, #15161a); border: 1px solid var(--border, #2c2e35); color: inherit; border-radius: 0.25rem; font-size: 0.917rem; }
+.k-ac-main { flex: 1; min-height: 0; display: flex; }
+.k-ac-list { width: 15.833rem; flex: none; overflow-y: auto; border-right: 1px solid var(--border, #2c2e35); }
+.k-ac-all { display: block; padding: 0.417rem 0.667rem; color: var(--text-dim, #8b909c); border-bottom: 1px solid var(--border, #2c2e35); }
+.k-ac-item { display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.667rem; cursor: pointer; }
+.k-ac-item:hover { background: var(--bg-3, #2a2c33); }
+.k-ac-item.off { opacity: 0.4; }
+.k-ac-item .sw { width: 0.833rem; height: 0.833rem; border-radius: 0.167rem; flex: none; }
+.k-ac-item .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.k-ac-stage { flex: 1; min-width: 0; position: relative; overflow: hidden; }
+.k-ac-stage canvas { position: absolute; left: 0; top: 0; display: block; }
+.k-ac-info { padding: 0.25rem 0.667rem; border-top: 1px solid var(--border, #2c2e35); color: var(--text-dim, #8b909c); min-height: 1.333rem; }

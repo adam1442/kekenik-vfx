@@ -1,0 +1,4259 @@
+[
+ {
+  "name": "Flow Advect Loop",
+  "folder": "VFX",
+  "tags": [
+   "vfx",
+   "subgraph",
+   "flow",
+   "advect",
+   "loop",
+   "curl",
+   "fire",
+   "smoke",
+   "motion"
+  ],
+  "nodeType": "subgraph.sg_vfx_flow_advect_loop",
+  "typeVersion": 1,
+  "params": {},
+  "subgraph": {
+   "format": "kekenik-subgraph",
+   "id": "sg_vfx_flow_advect_loop",
+   "name": "Flow Advect Loop",
+   "description": "Advects any gray pattern along a curl-noise flow field with two-phase loop-safe blending (uv.flow). Cycles are whole numbers, so the result loops seamlessly. Use for fire, smoke and magic motion.",
+   "tags": [
+    "flow",
+    "advect",
+    "loop",
+    "curl",
+    "fire",
+    "smoke",
+    "motion"
+   ],
+   "folder": "VFX",
+   "version": 1,
+   "created": "2026-01-01T00:00:00.000Z",
+   "modified": "2026-01-01T00:00:00.000Z",
+   "graph": {
+    "settings": {
+     "width": 1024,
+     "height": 1024,
+     "tiling": "both",
+     "filtering": "linear",
+     "bitDepth": 16,
+     "fps": 30,
+     "loopLength": 64,
+     "seed": 0
+    },
+    "nodes": [
+     {
+      "id": "in_pattern",
+      "type": "subgraph.in_gray",
+      "typeVersion": 1,
+      "name": "Pattern",
+      "x": 0,
+      "y": 0,
+      "params": {
+       "name": "Pattern",
+       "order": 0,
+       "value": 0,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "curl",
+      "type": "uv.noise",
+      "typeVersion": 1,
+      "name": "Curl field",
+      "x": 600,
+      "y": 0,
+      "params": {
+       "mode": "curl",
+       "scale": [
+        3,
+        3
+       ],
+       "strength": 0.12,
+       "strength_mod_k": 1,
+       "octaves": 2,
+       "lacunarity": 2,
+       "roughness": 0.5,
+       "offset": [
+        0,
+        0
+       ],
+       "evolution": 0,
+       "z_cells": 2,
+       "seed": 0,
+       "uv_out": "absolute",
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "adv",
+      "type": "uv.flow",
+      "typeVersion": 1,
+      "name": "Two-phase advect",
+      "x": 880,
+      "y": 0,
+      "params": {
+       "uv_in": "absolute",
+       "strength": 0.1,
+       "strength_mod_k": 1,
+       "use_loop": true,
+       "phase": 0,
+       "cycles": 1,
+       "smooth_weight": true,
+       "phase_noise": 0.25,
+       "noise_cells": 4,
+       "seed": 0,
+       "uv_out": "absolute",
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "split",
+      "type": "utils.rgba_split",
+      "typeVersion": 1,
+      "name": "To gray",
+      "x": 1160,
+      "y": 0,
+      "params": {
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "out_advected",
+      "type": "subgraph.out_gray",
+      "typeVersion": 1,
+      "name": "Advected",
+      "x": 1440,
+      "y": 0,
+      "params": {
+       "name": "Advected",
+       "order": 0
+      }
+     }
+    ],
+    "links": [
+     {
+      "id": "l1",
+      "from": {
+       "node": "curl",
+       "pin": "output"
+      },
+      "to": {
+       "node": "adv",
+       "pin": "flow"
+      }
+     },
+     {
+      "id": "l2",
+      "from": {
+       "node": "in_pattern",
+       "pin": "output"
+      },
+      "to": {
+       "node": "adv",
+       "pin": "source"
+      }
+     },
+     {
+      "id": "l3",
+      "from": {
+       "node": "adv",
+       "pin": "result"
+      },
+      "to": {
+       "node": "split",
+       "pin": "input"
+      }
+     },
+     {
+      "id": "l4",
+      "from": {
+       "node": "split",
+       "pin": "r"
+      },
+      "to": {
+       "node": "out_advected",
+       "pin": "input"
+      }
+     }
+    ]
+   },
+   "exposed": [
+    {
+     "id": "p1",
+     "node": "adv",
+     "param": "strength",
+     "label": "Flow strength",
+     "group": "Flow",
+     "default": 0.1,
+     "min": 0,
+     "max": 0.5,
+     "tooltip": "Distance a pixel travels per cycle."
+    },
+    {
+     "id": "p2",
+     "node": "adv",
+     "param": "cycles",
+     "label": "Loop cycles",
+     "group": "Flow",
+     "default": 1,
+     "min": 1,
+     "max": 8,
+     "tooltip": "Whole advection cycles per loop (integer = seamless)."
+    },
+    {
+     "id": "p3",
+     "node": "curl",
+     "param": "scale",
+     "label": "Curl scale",
+     "group": "Field",
+     "default": [
+      3,
+      3
+     ],
+     "min": 1,
+     "max": 32,
+     "tooltip": "Size of the swirls."
+    },
+    {
+     "id": "p4",
+     "node": "curl",
+     "param": "strength",
+     "label": "Curl strength",
+     "group": "Field",
+     "default": 0.12,
+     "min": 0,
+     "max": 0.5,
+     "tooltip": "Amplitude of the flow field."
+    },
+    {
+     "id": "p5",
+     "node": "curl",
+     "param": "evolution",
+     "label": "Field evolution",
+     "group": "Field",
+     "default": 0,
+     "min": 0,
+     "max": 8,
+     "tooltip": "Animate 0 -> 1 per loop for a field that morphs and loops."
+    },
+    {
+     "id": "p6",
+     "node": "adv",
+     "param": "phase_noise",
+     "label": "Phase noise",
+     "group": "Flow",
+     "default": 0.25,
+     "min": 0,
+     "max": 1,
+     "tooltip": "Per-pixel phase offset hides the cross-fade pulse."
+    },
+    {
+     "id": "p7",
+     "node": "curl",
+     "param": "seed",
+     "label": "Seed",
+     "group": "Field",
+     "default": 0
+    }
+   ]
+  }
+ },
+ {
+  "name": "Domain Warp",
+  "folder": "VFX",
+  "tags": [
+   "vfx",
+   "subgraph",
+   "warp",
+   "domain",
+   "distort",
+   "smoke",
+   "fire",
+   "organic"
+  ],
+  "nodeType": "subgraph.sg_vfx_domain_warp",
+  "typeVersion": 1,
+  "params": {},
+  "subgraph": {
+   "format": "kekenik-subgraph",
+   "id": "sg_vfx_domain_warp",
+   "name": "Domain Warp",
+   "description": "Warps any gray pattern through a multi-octave noise vector field (domain warping): cauliflower edges, rolled smoke, organic flames. Animate Evolution 0 -> 1 for a looping warp.",
+   "tags": [
+    "warp",
+    "domain",
+    "distort",
+    "smoke",
+    "fire",
+    "organic"
+   ],
+   "folder": "VFX",
+   "version": 1,
+   "created": "2026-01-01T00:00:00.000Z",
+   "modified": "2026-01-01T00:00:00.000Z",
+   "graph": {
+    "settings": {
+     "width": 1024,
+     "height": 1024,
+     "tiling": "both",
+     "filtering": "linear",
+     "bitDepth": 16,
+     "fps": 30,
+     "loopLength": 64,
+     "seed": 0
+    },
+    "nodes": [
+     {
+      "id": "in_pattern",
+      "type": "subgraph.in_gray",
+      "typeVersion": 1,
+      "name": "Pattern",
+      "x": 0,
+      "y": 0,
+      "params": {
+       "name": "Pattern",
+       "order": 0,
+       "value": 0,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "warp",
+      "type": "uv.noise",
+      "typeVersion": 1,
+      "name": "Warp field",
+      "x": 600,
+      "y": 0,
+      "params": {
+       "mode": "vector",
+       "scale": [
+        3,
+        3
+       ],
+       "strength": 0.08,
+       "strength_mod_k": 1,
+       "octaves": 3,
+       "lacunarity": 2,
+       "roughness": 0.5,
+       "offset": [
+        0,
+        0
+       ],
+       "evolution": 0,
+       "z_cells": 2,
+       "seed": 0,
+       "uv_out": "absolute",
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "tr",
+      "type": "utils.transform",
+      "typeVersion": 1,
+      "name": "Apply warp",
+      "x": 880,
+      "y": 0,
+      "params": {
+       "translate": [
+        0,
+        0
+       ],
+       "rotation": 0,
+       "scale": [
+        1,
+        1
+       ],
+       "skew": [
+        0,
+        0
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "edge": "tiling",
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1,
+       "blend_mode": "max",
+       "blend_cross": 0.5,
+       "blend_smooth": 0.1
+      }
+     },
+     {
+      "id": "out_warped",
+      "type": "subgraph.out_gray",
+      "typeVersion": 1,
+      "name": "Warped",
+      "x": 1440,
+      "y": 0,
+      "params": {
+       "name": "Warped",
+       "order": 0
+      }
+     }
+    ],
+    "links": [
+     {
+      "id": "l1",
+      "from": {
+       "node": "in_pattern",
+       "pin": "output"
+      },
+      "to": {
+       "node": "tr",
+       "pin": "input"
+      }
+     },
+     {
+      "id": "l2",
+      "from": {
+       "node": "warp",
+       "pin": "output"
+      },
+      "to": {
+       "node": "tr",
+       "pin": "uv"
+      }
+     },
+     {
+      "id": "l3",
+      "from": {
+       "node": "tr",
+       "pin": "output"
+      },
+      "to": {
+       "node": "out_warped",
+       "pin": "input"
+      }
+     }
+    ]
+   },
+   "exposed": [
+    {
+     "id": "p1",
+     "node": "warp",
+     "param": "strength",
+     "label": "Warp strength",
+     "group": "Warp",
+     "default": 0.08,
+     "min": 0,
+     "max": 0.4,
+     "tooltip": "Displacement amount (UV)."
+    },
+    {
+     "id": "p2",
+     "node": "warp",
+     "param": "scale",
+     "label": "Warp scale",
+     "group": "Warp",
+     "default": [
+      3,
+      3
+     ],
+     "min": 1,
+     "max": 32,
+     "tooltip": "Size of the warp features."
+    },
+    {
+     "id": "p3",
+     "node": "warp",
+     "param": "octaves",
+     "label": "Detail",
+     "group": "Warp",
+     "default": 3,
+     "min": 1,
+     "max": 6,
+     "tooltip": "Warp octaves (fine wobble)."
+    },
+    {
+     "id": "p4",
+     "node": "warp",
+     "param": "evolution",
+     "label": "Evolution",
+     "group": "Animation",
+     "default": 0,
+     "min": 0,
+     "max": 8,
+     "tooltip": "Animate 0 -> 1 per loop for a seamless loop."
+    },
+    {
+     "id": "p5",
+     "node": "warp",
+     "param": "seed",
+     "label": "Seed",
+     "group": "Animation",
+     "default": 0
+    }
+   ]
+  }
+ },
+ {
+  "name": "Dissolve Over Time",
+  "folder": "VFX",
+  "tags": [
+   "vfx",
+   "subgraph",
+   "dissolve",
+   "erode",
+   "burn",
+   "edge",
+   "teleport",
+   "fade",
+   "threshold"
+  ],
+  "nodeType": "subgraph.sg_vfx_dissolve_over_time",
+  "typeVersion": 1,
+  "params": {},
+  "subgraph": {
+   "format": "kekenik-subgraph",
+   "id": "sg_vfx_dissolve_over_time",
+   "name": "Dissolve Over Time",
+   "description": "Dissolve / erode with burn edge: Shape + Noise in, Mask, Edge and a coloured Burn ramp out. Animate Progress 0 -> 100% (or Reverse to grow). Per-pixel, tiling-safe.",
+   "tags": [
+    "dissolve",
+    "erode",
+    "burn",
+    "edge",
+    "teleport",
+    "fade",
+    "threshold"
+   ],
+   "folder": "VFX",
+   "version": 1,
+   "created": "2026-01-01T00:00:00.000Z",
+   "modified": "2026-01-01T00:00:00.000Z",
+   "graph": {
+    "settings": {
+     "width": 1024,
+     "height": 1024,
+     "tiling": "both",
+     "filtering": "linear",
+     "bitDepth": 16,
+     "fps": 30,
+     "loopLength": 64,
+     "seed": 0
+    },
+    "nodes": [
+     {
+      "id": "in_shape",
+      "type": "subgraph.in_gray",
+      "typeVersion": 1,
+      "name": "Shape",
+      "x": 0,
+      "y": 0,
+      "params": {
+       "name": "Shape",
+       "order": 0,
+       "value": 0,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "in_noise",
+      "type": "subgraph.in_gray",
+      "typeVersion": 1,
+      "name": "Noise",
+      "x": 0,
+      "y": 190,
+      "params": {
+       "name": "Noise",
+       "order": 1,
+       "value": 0,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "dis",
+      "type": "utils.dissolve",
+      "typeVersion": 1,
+      "name": "Dissolve",
+      "x": 600,
+      "y": 0,
+      "params": {
+       "progress": 0,
+       "progress_mod_k": 1,
+       "softness": 0.08,
+       "edge_width": 0.12,
+       "noise_amount": 0.5,
+       "noise_contrast": 1,
+       "reverse": false,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "burn",
+      "type": "color.ramp",
+      "typeVersion": 1,
+      "name": "Burn colour",
+      "x": 880,
+      "y": 190,
+      "params": {
+       "gradient": {
+        "stops": [
+         {
+          "pos": 0,
+          "color": [
+           0,
+           0,
+           0,
+           0
+          ]
+         },
+         {
+          "pos": 0.4,
+          "color": [
+           1,
+           0.25,
+           0.02,
+           0.8
+          ]
+         },
+         {
+          "pos": 0.75,
+          "color": [
+           1,
+           0.7,
+           0.15,
+           1
+          ]
+         },
+         {
+          "pos": 1,
+          "color": [
+           1,
+           0.95,
+           0.7,
+           1
+          ]
+         }
+        ],
+        "interp": "oklab"
+       },
+       "in_low": 0,
+       "in_high": 1,
+       "offset": 0,
+       "repeat": 1,
+       "wrap_mode": "clamp",
+       "intensity": 3,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "out_mask",
+      "type": "subgraph.out_gray",
+      "typeVersion": 1,
+      "name": "Mask",
+      "x": 1440,
+      "y": 0,
+      "params": {
+       "name": "Mask",
+       "order": 0
+      }
+     },
+     {
+      "id": "out_edge",
+      "type": "subgraph.out_gray",
+      "typeVersion": 1,
+      "name": "Edge",
+      "x": 1440,
+      "y": 190,
+      "params": {
+       "name": "Edge",
+       "order": 1
+      }
+     },
+     {
+      "id": "out_burn",
+      "type": "subgraph.out_color",
+      "typeVersion": 1,
+      "name": "Burn",
+      "x": 1440,
+      "y": 380,
+      "params": {
+       "name": "Burn",
+       "order": 2
+      }
+     }
+    ],
+    "links": [
+     {
+      "id": "l1",
+      "from": {
+       "node": "in_shape",
+       "pin": "output"
+      },
+      "to": {
+       "node": "dis",
+       "pin": "input"
+      }
+     },
+     {
+      "id": "l2",
+      "from": {
+       "node": "in_noise",
+       "pin": "output"
+      },
+      "to": {
+       "node": "dis",
+       "pin": "noise"
+      }
+     },
+     {
+      "id": "l3",
+      "from": {
+       "node": "dis",
+       "pin": "heat"
+      },
+      "to": {
+       "node": "burn",
+       "pin": "input"
+      }
+     },
+     {
+      "id": "l4",
+      "from": {
+       "node": "dis",
+       "pin": "mask"
+      },
+      "to": {
+       "node": "out_mask",
+       "pin": "input"
+      }
+     },
+     {
+      "id": "l5",
+      "from": {
+       "node": "dis",
+       "pin": "edge"
+      },
+      "to": {
+       "node": "out_edge",
+       "pin": "input"
+      }
+     },
+     {
+      "id": "l6",
+      "from": {
+       "node": "burn",
+       "pin": "output"
+      },
+      "to": {
+       "node": "out_burn",
+       "pin": "input"
+      }
+     }
+    ]
+   },
+   "exposed": [
+    {
+     "id": "p1",
+     "node": "dis",
+     "param": "progress",
+     "label": "Progress",
+     "group": "Dissolve",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "tooltip": "Animate 0 -> 100% to dissolve."
+    },
+    {
+     "id": "p2",
+     "node": "dis",
+     "param": "softness",
+     "label": "Softness",
+     "group": "Dissolve",
+     "default": 0.08,
+     "min": 0.001,
+     "max": 1,
+     "tooltip": "Soft front width."
+    },
+    {
+     "id": "p3",
+     "node": "dis",
+     "param": "edge_width",
+     "label": "Edge width",
+     "group": "Edge",
+     "default": 0.12,
+     "min": 0,
+     "max": 1,
+     "tooltip": "Burn band width."
+    },
+    {
+     "id": "p4",
+     "node": "dis",
+     "param": "noise_amount",
+     "label": "Noise amount",
+     "group": "Dissolve",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "tooltip": "How much the noise breaks the front."
+    },
+    {
+     "id": "p5",
+     "node": "dis",
+     "param": "reverse",
+     "label": "Reverse (grow)",
+     "group": "Dissolve",
+     "default": false
+    },
+    {
+     "id": "p6",
+     "node": "burn",
+     "param": "gradient",
+     "label": "Burn gradient",
+     "group": "Edge",
+     "default": {
+      "stops": [
+       {
+        "pos": 0,
+        "color": [
+         0,
+         0,
+         0,
+         0
+        ]
+       },
+       {
+        "pos": 0.4,
+        "color": [
+         1,
+         0.25,
+         0.02,
+         0.8
+        ]
+       },
+       {
+        "pos": 0.75,
+        "color": [
+         1,
+         0.7,
+         0.15,
+         1
+        ]
+       },
+       {
+        "pos": 1,
+        "color": [
+         1,
+         0.95,
+         0.7,
+         1
+        ]
+       }
+      ],
+      "interp": "oklab"
+     },
+     "tooltip": "Colour over the heat (front = 100%)."
+    },
+    {
+     "id": "p7",
+     "node": "burn",
+     "param": "intensity",
+     "label": "Burn intensity",
+     "group": "Edge",
+     "default": 3,
+     "min": 0,
+     "max": 32,
+     "tooltip": "HDR multiplier of the burn colour."
+    }
+   ]
+  }
+ },
+ {
+  "name": "Fire Temperature Ramp",
+  "folder": "VFX",
+  "tags": [
+   "vfx",
+   "subgraph",
+   "fire",
+   "temperature",
+   "blackbody",
+   "hdr",
+   "ramp",
+   "flame",
+   "ember",
+   "explosion"
+  ],
+  "nodeType": "subgraph.sg_vfx_fire_temperature_ramp",
+  "typeVersion": 1,
+  "params": {},
+  "subgraph": {
+   "format": "kekenik-subgraph",
+   "id": "sg_vfx_fire_temperature_ramp",
+   "name": "Fire Temperature Ramp",
+   "description": "Gray temperature map -> HDR blackbody fire colour (core above 1, cool tips fade). A shape-curve control reshapes the input before the Kelvin mapping.",
+   "tags": [
+    "fire",
+    "temperature",
+    "blackbody",
+    "hdr",
+    "ramp",
+    "flame",
+    "ember",
+    "explosion"
+   ],
+   "folder": "VFX",
+   "version": 1,
+   "created": "2026-01-01T00:00:00.000Z",
+   "modified": "2026-01-01T00:00:00.000Z",
+   "graph": {
+    "settings": {
+     "width": 1024,
+     "height": 1024,
+     "tiling": "both",
+     "filtering": "linear",
+     "bitDepth": 16,
+     "fps": 30,
+     "loopLength": 64,
+     "seed": 0
+    },
+    "nodes": [
+     {
+      "id": "in_temperature",
+      "type": "subgraph.in_gray",
+      "typeVersion": 1,
+      "name": "Temperature",
+      "x": 0,
+      "y": 0,
+      "params": {
+       "name": "Temperature",
+       "order": 0,
+       "value": 0,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "shape",
+      "type": "utils.math",
+      "typeVersion": 1,
+      "name": "Shape curve",
+      "x": 600,
+      "y": 0,
+      "params": {
+       "op": "pow",
+       "value": 1,
+       "value_mod_k": 1,
+       "value2": 0.5,
+       "in_range": [
+        0,
+        1
+       ],
+       "out_range": [
+        0,
+        1
+       ],
+       "clamp_out": false,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "bb",
+      "type": "color.blackbody",
+      "typeVersion": 1,
+      "name": "Blackbody",
+      "x": 880,
+      "y": 0,
+      "params": {
+       "kelvin_min": 1000,
+       "kelvin_max": 4200,
+       "temp_curve": 1,
+       "emission_curve": 1.6,
+       "intensity": 3,
+       "intensity_mod_k": 1,
+       "tint": [
+        1,
+        1,
+        1,
+        1
+       ],
+       "alpha_mode": "temperature",
+       "alpha_lo": 0.02,
+       "alpha_hi": 0.35,
+       "tonemap": false,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "out_color",
+      "type": "subgraph.out_color",
+      "typeVersion": 1,
+      "name": "Color",
+      "x": 1440,
+      "y": 0,
+      "params": {
+       "name": "Color",
+       "order": 0
+      }
+     }
+    ],
+    "links": [
+     {
+      "id": "l1",
+      "from": {
+       "node": "in_temperature",
+       "pin": "output"
+      },
+      "to": {
+       "node": "shape",
+       "pin": "a"
+      }
+     },
+     {
+      "id": "l2",
+      "from": {
+       "node": "shape",
+       "pin": "output"
+      },
+      "to": {
+       "node": "bb",
+       "pin": "input"
+      }
+     },
+     {
+      "id": "l3",
+      "from": {
+       "node": "bb",
+       "pin": "output"
+      },
+      "to": {
+       "node": "out_color",
+       "pin": "input"
+      }
+     }
+    ]
+   },
+   "exposed": [
+    {
+     "id": "p1",
+     "node": "bb",
+     "param": "kelvin_max",
+     "label": "Hot temperature (K)",
+     "group": "Temperature",
+     "default": 4200,
+     "min": 1000,
+     "max": 12000,
+     "tooltip": "Kelvin at 100% (4200 yellow-white, 9000 blue-white)."
+    },
+    {
+     "id": "p2",
+     "node": "bb",
+     "param": "kelvin_min",
+     "label": "Cool temperature (K)",
+     "group": "Temperature",
+     "default": 1000,
+     "min": 1000,
+     "max": 6000,
+     "tooltip": "Kelvin at 0% (1000 = deep red)."
+    },
+    {
+     "id": "p3",
+     "node": "shape",
+     "param": "value",
+     "label": "Shape curve",
+     "group": "Temperature",
+     "default": 1,
+     "min": 0.2,
+     "max": 4,
+     "tooltip": "Power on the input: > 1 pushes the body towards red."
+    },
+    {
+     "id": "p4",
+     "node": "bb",
+     "param": "emission_curve",
+     "label": "Emission curve",
+     "group": "Emission",
+     "default": 1.6,
+     "min": 0,
+     "max": 6,
+     "tooltip": "Brightness = intensity * value^curve."
+    },
+    {
+     "id": "p5",
+     "node": "bb",
+     "param": "intensity",
+     "label": "Intensity (HDR)",
+     "group": "Emission",
+     "default": 3,
+     "min": 0,
+     "max": 32,
+     "tooltip": "HDR multiplier; the core exceeds 1."
+    },
+    {
+     "id": "p6",
+     "node": "bb",
+     "param": "tint",
+     "label": "Tint",
+     "group": "Emission",
+     "default": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "tooltip": "Colour multiplier (green / blue fire)."
+    },
+    {
+     "id": "p7",
+     "node": "bb",
+     "param": "tonemap",
+     "label": "Tonemap preview",
+     "group": "Emission",
+     "default": false
+    }
+   ]
+  }
+ },
+ {
+  "name": "Soft Particle Mask",
+  "folder": "VFX",
+  "tags": [
+   "vfx",
+   "subgraph",
+   "particle",
+   "sprite",
+   "glow",
+   "soft",
+   "dot",
+   "mask",
+   "ember"
+  ],
+  "nodeType": "subgraph.sg_vfx_soft_particle_mask",
+  "typeVersion": 1,
+  "params": {},
+  "subgraph": {
+   "format": "kekenik-subgraph",
+   "id": "sg_vfx_soft_particle_mask",
+   "name": "Soft Particle Mask",
+   "description": "Round soft-edged sprite mask (glow dot) with an adjustable falloff curve: the base sprite of embers, motes, glows and soft particles.",
+   "tags": [
+    "particle",
+    "sprite",
+    "glow",
+    "soft",
+    "dot",
+    "mask",
+    "ember"
+   ],
+   "folder": "VFX",
+   "version": 1,
+   "created": "2026-01-01T00:00:00.000Z",
+   "modified": "2026-01-01T00:00:00.000Z",
+   "graph": {
+    "settings": {
+     "width": 1024,
+     "height": 1024,
+     "tiling": "both",
+     "filtering": "linear",
+     "bitDepth": 16,
+     "fps": 30,
+     "loopLength": 64,
+     "seed": 0
+    },
+    "nodes": [
+     {
+      "id": "disc",
+      "type": "grayscale.shape",
+      "typeVersion": 1,
+      "name": "Disc",
+      "x": 320,
+      "y": 0,
+      "params": {
+       "shape": "circle",
+       "size": [
+        0.9,
+        0.9
+       ],
+       "position": [
+        0.5,
+        0.5
+       ],
+       "rotation": 0,
+       "sides": 5,
+       "rounding": 0,
+       "pinch": 0.35,
+       "thickness": 0.3,
+       "aperture": 120,
+       "repeat": [
+        1,
+        1
+       ],
+       "softness": 1,
+       "bevel": 0,
+       "profile": {
+        "keys": [
+         {
+          "x": 0,
+          "y": 0
+         },
+         {
+          "x": 1,
+          "y": 1
+         }
+        ]
+       },
+       "output_mode": "fill",
+       "outline_width": 0.1,
+       "intensity": 1,
+       "invert": false,
+       "uv_amount": 1,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1,
+       "blend_mode": "max",
+       "blend_cross": 0.5,
+       "blend_smooth": 0.1
+      }
+     },
+     {
+      "id": "curve",
+      "type": "utils.math",
+      "typeVersion": 1,
+      "name": "Falloff",
+      "x": 600,
+      "y": 0,
+      "params": {
+       "op": "pow",
+       "value": 1.5,
+       "value_mod_k": 1,
+       "value2": 0.5,
+       "in_range": [
+        0,
+        1
+       ],
+       "out_range": [
+        0,
+        1
+       ],
+       "clamp_out": false,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "out_mask",
+      "type": "subgraph.out_gray",
+      "typeVersion": 1,
+      "name": "Mask",
+      "x": 1440,
+      "y": 0,
+      "params": {
+       "name": "Mask",
+       "order": 0
+      }
+     }
+    ],
+    "links": [
+     {
+      "id": "l1",
+      "from": {
+       "node": "disc",
+       "pin": "output"
+      },
+      "to": {
+       "node": "curve",
+       "pin": "a"
+      }
+     },
+     {
+      "id": "l2",
+      "from": {
+       "node": "curve",
+       "pin": "output"
+      },
+      "to": {
+       "node": "out_mask",
+       "pin": "input"
+      }
+     }
+    ]
+   },
+   "exposed": [
+    {
+     "id": "p1",
+     "node": "disc",
+     "param": "size",
+     "label": "Size",
+     "group": "Sprite",
+     "default": [
+      0.9,
+      0.9
+     ],
+     "min": 0.05,
+     "max": 1.5,
+     "tooltip": "Disc size relative to the image."
+    },
+    {
+     "id": "p2",
+     "node": "disc",
+     "param": "softness",
+     "label": "Softness",
+     "group": "Sprite",
+     "default": 1,
+     "min": 0,
+     "max": 1,
+     "tooltip": "100% = glow, 0% = hard disc."
+    },
+    {
+     "id": "p3",
+     "node": "curve",
+     "param": "value",
+     "label": "Falloff power",
+     "group": "Sprite",
+     "default": 1.5,
+     "min": 0.2,
+     "max": 6,
+     "tooltip": "Higher = tighter core."
+    },
+    {
+     "id": "p4",
+     "node": "disc",
+     "param": "intensity",
+     "label": "Intensity",
+     "group": "Sprite",
+     "default": 1,
+     "min": 0,
+     "max": 4
+    }
+   ]
+  }
+ },
+ {
+  "name": "Lightning Bolt Core",
+  "folder": "VFX",
+  "tags": [
+   "vfx",
+   "subgraph",
+   "lightning",
+   "bolt",
+   "arc",
+   "electric",
+   "flicker",
+   "strike"
+  ],
+  "nodeType": "subgraph.sg_vfx_lightning_bolt_core",
+  "typeVersion": 1,
+  "params": {},
+  "subgraph": {
+   "format": "kekenik-subgraph",
+   "id": "sg_vfx_lightning_bolt_core",
+   "name": "Lightning Bolt Core",
+   "description": "Lightning bolt with branches, strike reveal and a bloom pass. Animate Evolution for a morphing bolt, Seed (stepped) for flicker, Reveal for the strike.",
+   "tags": [
+    "lightning",
+    "bolt",
+    "arc",
+    "electric",
+    "flicker",
+    "strike"
+   ],
+   "folder": "VFX",
+   "version": 1,
+   "created": "2026-01-01T00:00:00.000Z",
+   "modified": "2026-01-01T00:00:00.000Z",
+   "graph": {
+    "settings": {
+     "width": 1024,
+     "height": 1024,
+     "tiling": "both",
+     "filtering": "linear",
+     "bitDepth": 16,
+     "fps": 30,
+     "loopLength": 64,
+     "seed": 0
+    },
+    "nodes": [
+     {
+      "id": "bolt",
+      "type": "grayscale.lightning",
+      "typeVersion": 1,
+      "name": "Bolt",
+      "x": 320,
+      "y": 0,
+      "params": {
+       "start": [
+        0.5,
+        0.04
+       ],
+       "end": [
+        0.5,
+        0.96
+       ],
+       "width": 0.012,
+       "softness": 0.35,
+       "taper": 0.5,
+       "glow": 0.35,
+       "glow_radius": 0.03,
+       "jag": 0.09,
+       "segments": 5,
+       "octaves": 5,
+       "roughness": 0.52,
+       "evolution": 0,
+       "seed": 3,
+       "branches": 3,
+       "branch_length": 0.45,
+       "branch_angle": 38,
+       "branch_width": 0.55,
+       "branch_jag": 0.8,
+       "reveal": 1,
+       "reveal_soft": 0.12,
+       "intensity": 1,
+       "invert": false,
+       "uv_amount": 1,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1,
+       "blend_mode": "max",
+       "blend_cross": 0.5,
+       "blend_smooth": 0.1
+      }
+     },
+     {
+      "id": "glow",
+      "type": "utils.glow",
+      "typeVersion": 1,
+      "name": "Bloom",
+      "x": 600,
+      "y": 0,
+      "params": {
+       "threshold": 0.4,
+       "knee": 0.2,
+       "radius": 0.05,
+       "scales": 5,
+       "intensity": 0.6,
+       "mode": "add",
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1,
+       "blend_mode": "max",
+       "blend_cross": 0.5,
+       "blend_smooth": 0.1
+      }
+     },
+     {
+      "id": "out_bolt",
+      "type": "subgraph.out_gray",
+      "typeVersion": 1,
+      "name": "Bolt",
+      "x": 1440,
+      "y": 0,
+      "params": {
+       "name": "Bolt",
+       "order": 0
+      }
+     }
+    ],
+    "links": [
+     {
+      "id": "l1",
+      "from": {
+       "node": "bolt",
+       "pin": "output"
+      },
+      "to": {
+       "node": "glow",
+       "pin": "input"
+      }
+     },
+     {
+      "id": "l2",
+      "from": {
+       "node": "glow",
+       "pin": "output"
+      },
+      "to": {
+       "node": "out_bolt",
+       "pin": "input"
+      }
+     }
+    ]
+   },
+   "exposed": [
+    {
+     "id": "p1",
+     "node": "bolt",
+     "param": "jag",
+     "label": "Jaggedness",
+     "group": "Bolt",
+     "default": 0.09,
+     "min": 0,
+     "max": 0.4,
+     "tooltip": "Zig-zag amount."
+    },
+    {
+     "id": "p2",
+     "node": "bolt",
+     "param": "width",
+     "label": "Core width",
+     "group": "Bolt",
+     "default": 0.012,
+     "min": 0.001,
+     "max": 0.08
+    },
+    {
+     "id": "p3",
+     "node": "bolt",
+     "param": "branches",
+     "label": "Branches",
+     "group": "Bolt",
+     "default": 3,
+     "min": 0,
+     "max": 6
+    },
+    {
+     "id": "p4",
+     "node": "bolt",
+     "param": "reveal",
+     "label": "Strike reveal",
+     "group": "Animation",
+     "default": 1,
+     "min": 0,
+     "max": 1,
+     "tooltip": "Animate 0 -> 100% for the strike."
+    },
+    {
+     "id": "p5",
+     "node": "bolt",
+     "param": "evolution",
+     "label": "Evolution",
+     "group": "Animation",
+     "default": 0,
+     "min": 0,
+     "max": 16,
+     "tooltip": "Integer values return to a fresh shape."
+    },
+    {
+     "id": "p6",
+     "node": "bolt",
+     "param": "seed",
+     "label": "Seed",
+     "group": "Animation",
+     "default": 3,
+     "tooltip": "Animate stepped for flicker."
+    },
+    {
+     "id": "p7",
+     "node": "glow",
+     "param": "intensity",
+     "label": "Bloom",
+     "group": "Glow",
+     "default": 0.6,
+     "min": 0,
+     "max": 4
+    }
+   ]
+  }
+ },
+ {
+  "name": "Rune Ring",
+  "folder": "VFX",
+  "tags": [
+   "vfx",
+   "subgraph",
+   "rune",
+   "magic circle",
+   "glyph",
+   "ring",
+   "spell",
+   "sigil",
+   "build-up"
+  ],
+  "nodeType": "subgraph.sg_vfx_rune_ring",
+  "typeVersion": 1,
+  "params": {},
+  "subgraph": {
+   "format": "kekenik-subgraph",
+   "id": "sg_vfx_rune_ring",
+   "name": "Rune Ring",
+   "description": "Procedural rune ring with border circles and bloom, ready for magic circles. Animate Rotation (360 per loop) and Reveal (build-up).",
+   "tags": [
+    "rune",
+    "magic circle",
+    "glyph",
+    "ring",
+    "spell",
+    "sigil",
+    "build-up"
+   ],
+   "folder": "VFX",
+   "version": 1,
+   "created": "2026-01-01T00:00:00.000Z",
+   "modified": "2026-01-01T00:00:00.000Z",
+   "graph": {
+    "settings": {
+     "width": 1024,
+     "height": 1024,
+     "tiling": "both",
+     "filtering": "linear",
+     "bitDepth": 16,
+     "fps": 30,
+     "loopLength": 64,
+     "seed": 0
+    },
+    "nodes": [
+     {
+      "id": "runes",
+      "type": "grayscale.rune_ring",
+      "typeVersion": 1,
+      "name": "Runes",
+      "x": 320,
+      "y": 0,
+      "params": {
+       "center": [
+        0.5,
+        0.5
+       ],
+       "radius": 0.36,
+       "glyph_height": 0.1,
+       "count": 24,
+       "gap": 0.3,
+       "rotation": 0,
+       "stroke": 0.008,
+       "softness": 0.4,
+       "complexity": 4,
+       "grid": 3,
+       "stem": true,
+       "mirror": true,
+       "ring_lines": true,
+       "flicker": 0.2,
+       "reveal": 1,
+       "intensity": 1,
+       "intensity_mod_k": 1,
+       "seed": 1,
+       "invert": false,
+       "uv_amount": 1,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1,
+       "blend_mode": "max",
+       "blend_cross": 0.5,
+       "blend_smooth": 0.1
+      }
+     },
+     {
+      "id": "glow",
+      "type": "utils.glow",
+      "typeVersion": 1,
+      "name": "Bloom",
+      "x": 600,
+      "y": 0,
+      "params": {
+       "threshold": 0.3,
+       "knee": 0.2,
+       "radius": 0.04,
+       "scales": 5,
+       "intensity": 0.5,
+       "mode": "add",
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1,
+       "blend_mode": "max",
+       "blend_cross": 0.5,
+       "blend_smooth": 0.1
+      }
+     },
+     {
+      "id": "out_runes",
+      "type": "subgraph.out_gray",
+      "typeVersion": 1,
+      "name": "Runes",
+      "x": 1440,
+      "y": 0,
+      "params": {
+       "name": "Runes",
+       "order": 0
+      }
+     }
+    ],
+    "links": [
+     {
+      "id": "l1",
+      "from": {
+       "node": "runes",
+       "pin": "output"
+      },
+      "to": {
+       "node": "glow",
+       "pin": "input"
+      }
+     },
+     {
+      "id": "l2",
+      "from": {
+       "node": "glow",
+       "pin": "output"
+      },
+      "to": {
+       "node": "out_runes",
+       "pin": "input"
+      }
+     }
+    ]
+   },
+   "exposed": [
+    {
+     "id": "p1",
+     "node": "runes",
+     "param": "count",
+     "label": "Rune count",
+     "group": "Ring",
+     "default": 24,
+     "min": 3,
+     "max": 96
+    },
+    {
+     "id": "p2",
+     "node": "runes",
+     "param": "radius",
+     "label": "Ring radius",
+     "group": "Ring",
+     "default": 0.36,
+     "min": 0.05,
+     "max": 0.6
+    },
+    {
+     "id": "p3",
+     "node": "runes",
+     "param": "glyph_height",
+     "label": "Glyph size",
+     "group": "Ring",
+     "default": 0.1,
+     "min": 0.02,
+     "max": 0.3
+    },
+    {
+     "id": "p4",
+     "node": "runes",
+     "param": "rotation",
+     "label": "Rotation",
+     "group": "Animation",
+     "default": 0,
+     "tooltip": "Animate 0 -> 360 per loop."
+    },
+    {
+     "id": "p5",
+     "node": "runes",
+     "param": "reveal",
+     "label": "Reveal",
+     "group": "Animation",
+     "default": 1,
+     "min": 0,
+     "max": 1,
+     "tooltip": "Build-up: animate 0 -> 100%."
+    },
+    {
+     "id": "p6",
+     "node": "runes",
+     "param": "stroke",
+     "label": "Stroke",
+     "group": "Look",
+     "default": 0.008,
+     "min": 0.001,
+     "max": 0.05
+    },
+    {
+     "id": "p7",
+     "node": "runes",
+     "param": "seed",
+     "label": "Seed",
+     "group": "Look",
+     "default": 1
+    },
+    {
+     "id": "p8",
+     "node": "glow",
+     "param": "intensity",
+     "label": "Bloom",
+     "group": "Look",
+     "default": 0.5,
+     "min": 0,
+     "max": 4
+    }
+   ]
+  }
+ },
+ {
+  "name": "Smoke Puff Body",
+  "folder": "VFX",
+  "tags": [
+   "vfx",
+   "subgraph",
+   "smoke",
+   "puff",
+   "billow",
+   "cloud",
+   "explosion",
+   "fireball",
+   "dust"
+  ],
+  "nodeType": "subgraph.sg_vfx_smoke_puff_body",
+  "typeVersion": 1,
+  "params": {},
+  "subgraph": {
+   "format": "kekenik-subgraph",
+   "id": "sg_vfx_smoke_puff_body",
+   "name": "Smoke Puff Body",
+   "description": "Billowy smoke / fireball body: warped billow noise multiplied by a soft round envelope and soft-thresholded into rolled edges. Animate Evolution for the roll, Size for the expansion.",
+   "tags": [
+    "smoke",
+    "puff",
+    "billow",
+    "cloud",
+    "explosion",
+    "fireball",
+    "dust"
+   ],
+   "folder": "VFX",
+   "version": 1,
+   "created": "2026-01-01T00:00:00.000Z",
+   "modified": "2026-01-01T00:00:00.000Z",
+   "graph": {
+    "settings": {
+     "width": 1024,
+     "height": 1024,
+     "tiling": "both",
+     "filtering": "linear",
+     "bitDepth": 16,
+     "fps": 30,
+     "loopLength": 64,
+     "seed": 0
+    },
+    "nodes": [
+     {
+      "id": "warp",
+      "type": "uv.noise",
+      "typeVersion": 1,
+      "name": "Warp",
+      "x": 320,
+      "y": 190,
+      "params": {
+       "mode": "curl",
+       "scale": [
+        3,
+        3
+       ],
+       "strength": 0.07,
+       "strength_mod_k": 1,
+       "octaves": 2,
+       "lacunarity": 2,
+       "roughness": 0.5,
+       "offset": [
+        0,
+        0
+       ],
+       "evolution": 0,
+       "z_cells": 2,
+       "seed": 0,
+       "uv_out": "absolute",
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "noise",
+      "type": "grayscale.noise",
+      "typeVersion": 2,
+      "name": "Billow",
+      "x": 600,
+      "y": 190,
+      "params": {
+       "noise_type": "billow",
+       "metric": "euclid",
+       "jitter": 1,
+       "edge_width": 0.08,
+       "gabor_freq": 3,
+       "gabor_angle": 0,
+       "gabor_spread": 1,
+       "scale": [
+        4,
+        4
+       ],
+       "octaves": 5,
+       "lacunarity": 2,
+       "roughness": 0.55,
+       "octave_rotation": 0,
+       "offset": [
+        0,
+        0
+       ],
+       "rotation": 0,
+       "anisotropy": 0,
+       "uv_amount": 1,
+       "warp_amount": 0,
+       "warp_freq": 3,
+       "evolution": 0,
+       "z_cells": 2,
+       "seed": 0,
+       "contrast": 1,
+       "contrast_mod_k": 1,
+       "remap_lo": 0,
+       "remap_hi": 1,
+       "bias": 0.5,
+       "brightness": 0,
+       "invert": false,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1,
+       "blend_mode": "max",
+       "blend_cross": 0.5,
+       "blend_smooth": 0.1
+      }
+     },
+     {
+      "id": "env",
+      "type": "grayscale.shape",
+      "typeVersion": 1,
+      "name": "Envelope",
+      "x": 600,
+      "y": 0,
+      "params": {
+       "shape": "circle",
+       "size": [
+        0.7,
+        0.7
+       ],
+       "position": [
+        0.5,
+        0.5
+       ],
+       "rotation": 0,
+       "sides": 5,
+       "rounding": 0,
+       "pinch": 0.35,
+       "thickness": 0.3,
+       "aperture": 120,
+       "repeat": [
+        1,
+        1
+       ],
+       "softness": 0.8,
+       "bevel": 0,
+       "profile": {
+        "keys": [
+         {
+          "x": 0,
+          "y": 0
+         },
+         {
+          "x": 1,
+          "y": 1
+         }
+        ]
+       },
+       "output_mode": "fill",
+       "outline_width": 0.1,
+       "intensity": 1,
+       "invert": false,
+       "uv_amount": 1,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1,
+       "blend_mode": "max",
+       "blend_cross": 0.5,
+       "blend_smooth": 0.1
+      }
+     },
+     {
+      "id": "mul",
+      "type": "utils.blend",
+      "typeVersion": 1,
+      "name": "Envelope x noise",
+      "x": 880,
+      "y": 0,
+      "params": {
+       "blend_type": "multiply",
+       "cross_mix": 1,
+       "smoothness": 0.1,
+       "opacity": 1,
+       "clamp_output": false,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "soft",
+      "type": "utils.math",
+      "typeVersion": 1,
+      "name": "Soft threshold",
+      "x": 1160,
+      "y": 0,
+      "params": {
+       "op": "smoothstep",
+       "value": 0.18,
+       "value_mod_k": 1,
+       "value2": 0.35,
+       "in_range": [
+        0,
+        1
+       ],
+       "out_range": [
+        0,
+        1
+       ],
+       "clamp_out": true,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "out_body",
+      "type": "subgraph.out_gray",
+      "typeVersion": 1,
+      "name": "Body",
+      "x": 1440,
+      "y": 0,
+      "params": {
+       "name": "Body",
+       "order": 0
+      }
+     }
+    ],
+    "links": [
+     {
+      "id": "l1",
+      "from": {
+       "node": "warp",
+       "pin": "output"
+      },
+      "to": {
+       "node": "noise",
+       "pin": "uv"
+      }
+     },
+     {
+      "id": "l2",
+      "from": {
+       "node": "noise",
+       "pin": "output"
+      },
+      "to": {
+       "node": "mul",
+       "pin": "foreground"
+      }
+     },
+     {
+      "id": "l3",
+      "from": {
+       "node": "env",
+       "pin": "output"
+      },
+      "to": {
+       "node": "mul",
+       "pin": "background"
+      }
+     },
+     {
+      "id": "l4",
+      "from": {
+       "node": "mul",
+       "pin": "output"
+      },
+      "to": {
+       "node": "soft",
+       "pin": "a"
+      }
+     },
+     {
+      "id": "l5",
+      "from": {
+       "node": "soft",
+       "pin": "output"
+      },
+      "to": {
+       "node": "out_body",
+       "pin": "input"
+      }
+     }
+    ]
+   },
+   "exposed": [
+    {
+     "id": "p1",
+     "node": "env",
+     "param": "size",
+     "label": "Puff size",
+     "group": "Shape",
+     "default": [
+      0.7,
+      0.7
+     ],
+     "min": 0.05,
+     "max": 1.4,
+     "tooltip": "Animate for the expansion (scale over life)."
+    },
+    {
+     "id": "p2",
+     "node": "env",
+     "param": "softness",
+     "label": "Envelope softness",
+     "group": "Shape",
+     "default": 0.8,
+     "min": 0,
+     "max": 1
+    },
+    {
+     "id": "p3",
+     "node": "noise",
+     "param": "scale",
+     "label": "Billow scale",
+     "group": "Detail",
+     "default": [
+      4,
+      4
+     ],
+     "min": 1,
+     "max": 16
+    },
+    {
+     "id": "p4",
+     "node": "noise",
+     "param": "evolution",
+     "label": "Evolution",
+     "group": "Animation",
+     "default": 0,
+     "min": 0,
+     "max": 8,
+     "tooltip": "Animate 0 -> 1 per loop (seamless)."
+    },
+    {
+     "id": "p5",
+     "node": "warp",
+     "param": "strength",
+     "label": "Warp strength",
+     "group": "Detail",
+     "default": 0.07,
+     "min": 0,
+     "max": 0.3
+    },
+    {
+     "id": "p6",
+     "node": "soft",
+     "param": "value",
+     "label": "Threshold",
+     "group": "Edge",
+     "default": 0.18,
+     "min": 0,
+     "max": 1,
+     "tooltip": "Where the puff edge starts."
+    },
+    {
+     "id": "p7",
+     "node": "soft",
+     "param": "value2",
+     "label": "Edge softness",
+     "group": "Edge",
+     "default": 0.35,
+     "min": 0.01,
+     "max": 1
+    },
+    {
+     "id": "p8",
+     "node": "noise",
+     "param": "seed",
+     "label": "Seed",
+     "group": "Detail",
+     "default": 0
+    }
+   ]
+  }
+ },
+ {
+  "name": "Slash Color Rig",
+  "folder": "VFX",
+  "tags": [
+   "vfx",
+   "subgraph",
+   "slash",
+   "sword",
+   "melee",
+   "variant",
+   "fire",
+   "color"
+  ],
+  "nodeType": "subgraph.sg_vfx_slash_color_rig",
+  "typeVersion": 1,
+  "params": {},
+  "subgraph": {
+   "format": "kekenik-subgraph",
+   "id": "sg_vfx_slash_color_rig",
+   "name": "Slash Color Rig",
+   "description": "Colour rig for slashes and swipes: Mask + Edge in, HDR colour out through two editable gradients. The three variants below are this rig with Fire / Ice / Arcane gradients.",
+   "tags": [
+    "slash",
+    "sword",
+    "melee",
+    "variant",
+    "fire",
+    "color"
+   ],
+   "folder": "VFX",
+   "version": 1,
+   "created": "2026-01-01T00:00:00.000Z",
+   "modified": "2026-01-01T00:00:00.000Z",
+   "graph": {
+    "settings": {
+     "width": 1024,
+     "height": 1024,
+     "tiling": "both",
+     "filtering": "linear",
+     "bitDepth": 16,
+     "fps": 30,
+     "loopLength": 64,
+     "seed": 0
+    },
+    "nodes": [
+     {
+      "id": "in_mask",
+      "type": "subgraph.in_gray",
+      "typeVersion": 1,
+      "name": "Mask",
+      "x": 0,
+      "y": 0,
+      "params": {
+       "name": "Mask",
+       "order": 0,
+       "value": 0,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "in_edge",
+      "type": "subgraph.in_gray",
+      "typeVersion": 1,
+      "name": "Edge",
+      "x": 0,
+      "y": 190,
+      "params": {
+       "name": "Edge",
+       "order": 1,
+       "value": 0,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "body",
+      "type": "color.ramp",
+      "typeVersion": 1,
+      "name": "Body colour",
+      "x": 600,
+      "y": 0,
+      "params": {
+       "gradient": {
+        "stops": [
+         {
+          "pos": 0,
+          "color": [
+           0.02,
+           0,
+           0,
+           0
+          ]
+         },
+         {
+          "pos": 0.35,
+          "color": [
+           0.6,
+           0.06,
+           0.005,
+           0.6
+          ]
+         },
+         {
+          "pos": 0.7,
+          "color": [
+           1,
+           0.4,
+           0.04,
+           1
+          ]
+         },
+         {
+          "pos": 1,
+          "color": [
+           1,
+           0.8,
+           0.3,
+           1
+          ]
+         }
+        ],
+        "interp": "oklab"
+       },
+       "in_low": 0,
+       "in_high": 1,
+       "offset": 0,
+       "repeat": 1,
+       "wrap_mode": "clamp",
+       "intensity": 2,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "edge",
+      "type": "color.ramp",
+      "typeVersion": 1,
+      "name": "Edge colour",
+      "x": 600,
+      "y": 190,
+      "params": {
+       "gradient": {
+        "stops": [
+         {
+          "pos": 0,
+          "color": [
+           0,
+           0,
+           0,
+           0
+          ]
+         },
+         {
+          "pos": 0.5,
+          "color": [
+           1,
+           0.6,
+           0.1,
+           0.8
+          ]
+         },
+         {
+          "pos": 1,
+          "color": [
+           1,
+           0.95,
+           0.7,
+           1
+          ]
+         }
+        ],
+        "interp": "oklab"
+       },
+       "in_low": 0,
+       "in_high": 1,
+       "offset": 0,
+       "repeat": 1,
+       "wrap_mode": "clamp",
+       "intensity": 4,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "add",
+      "type": "utils.blend_color",
+      "typeVersion": 1,
+      "name": "Add edge",
+      "x": 880,
+      "y": 0,
+      "params": {
+       "blend_type": "add",
+       "cross_mix": 1,
+       "smoothness": 0.1,
+       "opacity": 1,
+       "clamp_output": false,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "out_color",
+      "type": "subgraph.out_color",
+      "typeVersion": 1,
+      "name": "Color",
+      "x": 1440,
+      "y": 0,
+      "params": {
+       "name": "Color",
+       "order": 0
+      }
+     }
+    ],
+    "links": [
+     {
+      "id": "l1",
+      "from": {
+       "node": "in_mask",
+       "pin": "output"
+      },
+      "to": {
+       "node": "body",
+       "pin": "input"
+      }
+     },
+     {
+      "id": "l2",
+      "from": {
+       "node": "in_edge",
+       "pin": "output"
+      },
+      "to": {
+       "node": "edge",
+       "pin": "input"
+      }
+     },
+     {
+      "id": "l3",
+      "from": {
+       "node": "edge",
+       "pin": "output"
+      },
+      "to": {
+       "node": "add",
+       "pin": "foreground"
+      }
+     },
+     {
+      "id": "l4",
+      "from": {
+       "node": "body",
+       "pin": "output"
+      },
+      "to": {
+       "node": "add",
+       "pin": "background"
+      }
+     },
+     {
+      "id": "l5",
+      "from": {
+       "node": "add",
+       "pin": "output"
+      },
+      "to": {
+       "node": "out_color",
+       "pin": "input"
+      }
+     }
+    ]
+   },
+   "exposed": [
+    {
+     "id": "p1",
+     "node": "body",
+     "param": "gradient",
+     "label": "Body gradient",
+     "group": "Colour",
+     "default": {
+      "stops": [
+       {
+        "pos": 0,
+        "color": [
+         0.02,
+         0,
+         0,
+         0
+        ]
+       },
+       {
+        "pos": 0.35,
+        "color": [
+         0.6,
+         0.06,
+         0.005,
+         0.6
+        ]
+       },
+       {
+        "pos": 0.7,
+        "color": [
+         1,
+         0.4,
+         0.04,
+         1
+        ]
+       },
+       {
+        "pos": 1,
+        "color": [
+         1,
+         0.8,
+         0.3,
+         1
+        ]
+       }
+      ],
+      "interp": "oklab"
+     },
+     "tooltip": "Colour of the slash body over the mask (HDR stops allowed)."
+    },
+    {
+     "id": "p2",
+     "node": "edge",
+     "param": "gradient",
+     "label": "Edge gradient",
+     "group": "Colour",
+     "default": {
+      "stops": [
+       {
+        "pos": 0,
+        "color": [
+         0,
+         0,
+         0,
+         0
+        ]
+       },
+       {
+        "pos": 0.5,
+        "color": [
+         1,
+         0.6,
+         0.1,
+         0.8
+        ]
+       },
+       {
+        "pos": 1,
+        "color": [
+         1,
+         0.95,
+         0.7,
+         1
+        ]
+       }
+      ],
+      "interp": "oklab"
+     },
+     "tooltip": "Colour of the burn edge."
+    },
+    {
+     "id": "p3",
+     "node": "body",
+     "param": "intensity",
+     "label": "Body intensity",
+     "group": "Colour",
+     "default": 2,
+     "min": 0,
+     "max": 32,
+     "tooltip": "HDR multiplier of the body."
+    },
+    {
+     "id": "p4",
+     "node": "edge",
+     "param": "intensity",
+     "label": "Edge intensity",
+     "group": "Colour",
+     "default": 4,
+     "min": 0,
+     "max": 64,
+     "tooltip": "HDR multiplier of the edge glow."
+    }
+   ]
+  }
+ },
+ {
+  "name": "Slash Color - Fire",
+  "folder": "VFX",
+  "tags": [
+   "vfx",
+   "subgraph",
+   "slash",
+   "sword",
+   "melee",
+   "variant",
+   "fire",
+   "color"
+  ],
+  "nodeType": "subgraph.sg_vfx_slash_fire",
+  "typeVersion": 1,
+  "params": {},
+  "subgraph": {
+   "format": "kekenik-subgraph",
+   "id": "sg_vfx_slash_fire",
+   "name": "Slash Color - Fire",
+   "description": "Fire variant of the Slash Color Rig (orange body, white-yellow edge).",
+   "tags": [
+    "slash",
+    "sword",
+    "melee",
+    "variant",
+    "fire",
+    "color"
+   ],
+   "folder": "VFX",
+   "version": 1,
+   "created": "2026-01-01T00:00:00.000Z",
+   "modified": "2026-01-01T00:00:00.000Z",
+   "graph": {
+    "settings": {
+     "width": 1024,
+     "height": 1024,
+     "tiling": "both",
+     "filtering": "linear",
+     "bitDepth": 16,
+     "fps": 30,
+     "loopLength": 64,
+     "seed": 0
+    },
+    "nodes": [
+     {
+      "id": "in_mask",
+      "type": "subgraph.in_gray",
+      "typeVersion": 1,
+      "name": "Mask",
+      "x": 0,
+      "y": 0,
+      "params": {
+       "name": "Mask",
+       "order": 0,
+       "value": 0,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "in_edge",
+      "type": "subgraph.in_gray",
+      "typeVersion": 1,
+      "name": "Edge",
+      "x": 0,
+      "y": 190,
+      "params": {
+       "name": "Edge",
+       "order": 1,
+       "value": 0,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "body",
+      "type": "color.ramp",
+      "typeVersion": 1,
+      "name": "Body colour",
+      "x": 600,
+      "y": 0,
+      "params": {
+       "gradient": {
+        "stops": [
+         {
+          "pos": 0,
+          "color": [
+           0.02,
+           0,
+           0,
+           0
+          ]
+         },
+         {
+          "pos": 0.35,
+          "color": [
+           0.6,
+           0.06,
+           0.005,
+           0.6
+          ]
+         },
+         {
+          "pos": 0.7,
+          "color": [
+           1,
+           0.4,
+           0.04,
+           1
+          ]
+         },
+         {
+          "pos": 1,
+          "color": [
+           1,
+           0.8,
+           0.3,
+           1
+          ]
+         }
+        ],
+        "interp": "oklab"
+       },
+       "in_low": 0,
+       "in_high": 1,
+       "offset": 0,
+       "repeat": 1,
+       "wrap_mode": "clamp",
+       "intensity": 2,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "edge",
+      "type": "color.ramp",
+      "typeVersion": 1,
+      "name": "Edge colour",
+      "x": 600,
+      "y": 190,
+      "params": {
+       "gradient": {
+        "stops": [
+         {
+          "pos": 0,
+          "color": [
+           0,
+           0,
+           0,
+           0
+          ]
+         },
+         {
+          "pos": 0.5,
+          "color": [
+           1,
+           0.6,
+           0.1,
+           0.8
+          ]
+         },
+         {
+          "pos": 1,
+          "color": [
+           1,
+           0.95,
+           0.7,
+           1
+          ]
+         }
+        ],
+        "interp": "oklab"
+       },
+       "in_low": 0,
+       "in_high": 1,
+       "offset": 0,
+       "repeat": 1,
+       "wrap_mode": "clamp",
+       "intensity": 4,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "add",
+      "type": "utils.blend_color",
+      "typeVersion": 1,
+      "name": "Add edge",
+      "x": 880,
+      "y": 0,
+      "params": {
+       "blend_type": "add",
+       "cross_mix": 1,
+       "smoothness": 0.1,
+       "opacity": 1,
+       "clamp_output": false,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "out_color",
+      "type": "subgraph.out_color",
+      "typeVersion": 1,
+      "name": "Color",
+      "x": 1440,
+      "y": 0,
+      "params": {
+       "name": "Color",
+       "order": 0
+      }
+     }
+    ],
+    "links": [
+     {
+      "id": "l1",
+      "from": {
+       "node": "in_mask",
+       "pin": "output"
+      },
+      "to": {
+       "node": "body",
+       "pin": "input"
+      }
+     },
+     {
+      "id": "l2",
+      "from": {
+       "node": "in_edge",
+       "pin": "output"
+      },
+      "to": {
+       "node": "edge",
+       "pin": "input"
+      }
+     },
+     {
+      "id": "l3",
+      "from": {
+       "node": "edge",
+       "pin": "output"
+      },
+      "to": {
+       "node": "add",
+       "pin": "foreground"
+      }
+     },
+     {
+      "id": "l4",
+      "from": {
+       "node": "body",
+       "pin": "output"
+      },
+      "to": {
+       "node": "add",
+       "pin": "background"
+      }
+     },
+     {
+      "id": "l5",
+      "from": {
+       "node": "add",
+       "pin": "output"
+      },
+      "to": {
+       "node": "out_color",
+       "pin": "input"
+      }
+     }
+    ]
+   },
+   "exposed": [
+    {
+     "id": "p1",
+     "node": "body",
+     "param": "gradient",
+     "label": "Body gradient",
+     "group": "Colour",
+     "default": {
+      "stops": [
+       {
+        "pos": 0,
+        "color": [
+         0.02,
+         0,
+         0,
+         0
+        ]
+       },
+       {
+        "pos": 0.35,
+        "color": [
+         0.6,
+         0.06,
+         0.005,
+         0.6
+        ]
+       },
+       {
+        "pos": 0.7,
+        "color": [
+         1,
+         0.4,
+         0.04,
+         1
+        ]
+       },
+       {
+        "pos": 1,
+        "color": [
+         1,
+         0.8,
+         0.3,
+         1
+        ]
+       }
+      ],
+      "interp": "oklab"
+     },
+     "tooltip": "Colour of the slash body over the mask (HDR stops allowed)."
+    },
+    {
+     "id": "p2",
+     "node": "edge",
+     "param": "gradient",
+     "label": "Edge gradient",
+     "group": "Colour",
+     "default": {
+      "stops": [
+       {
+        "pos": 0,
+        "color": [
+         0,
+         0,
+         0,
+         0
+        ]
+       },
+       {
+        "pos": 0.5,
+        "color": [
+         1,
+         0.6,
+         0.1,
+         0.8
+        ]
+       },
+       {
+        "pos": 1,
+        "color": [
+         1,
+         0.95,
+         0.7,
+         1
+        ]
+       }
+      ],
+      "interp": "oklab"
+     },
+     "tooltip": "Colour of the burn edge."
+    },
+    {
+     "id": "p3",
+     "node": "body",
+     "param": "intensity",
+     "label": "Body intensity",
+     "group": "Colour",
+     "default": 2,
+     "min": 0,
+     "max": 32,
+     "tooltip": "HDR multiplier of the body."
+    },
+    {
+     "id": "p4",
+     "node": "edge",
+     "param": "intensity",
+     "label": "Edge intensity",
+     "group": "Colour",
+     "default": 4,
+     "min": 0,
+     "max": 64,
+     "tooltip": "HDR multiplier of the edge glow."
+    }
+   ]
+  }
+ },
+ {
+  "name": "Slash Color - Ice",
+  "folder": "VFX",
+  "tags": [
+   "vfx",
+   "subgraph",
+   "slash",
+   "sword",
+   "melee",
+   "variant",
+   "ice",
+   "color"
+  ],
+  "nodeType": "subgraph.sg_vfx_slash_ice",
+  "typeVersion": 1,
+  "params": {},
+  "subgraph": {
+   "format": "kekenik-subgraph",
+   "id": "sg_vfx_slash_ice",
+   "name": "Slash Color - Ice",
+   "description": "Ice variant of the Slash Color Rig (blue body, white edge).",
+   "tags": [
+    "slash",
+    "sword",
+    "melee",
+    "variant",
+    "ice",
+    "color"
+   ],
+   "folder": "VFX",
+   "version": 1,
+   "created": "2026-01-01T00:00:00.000Z",
+   "modified": "2026-01-01T00:00:00.000Z",
+   "graph": {
+    "settings": {
+     "width": 1024,
+     "height": 1024,
+     "tiling": "both",
+     "filtering": "linear",
+     "bitDepth": 16,
+     "fps": 30,
+     "loopLength": 64,
+     "seed": 0
+    },
+    "nodes": [
+     {
+      "id": "in_mask",
+      "type": "subgraph.in_gray",
+      "typeVersion": 1,
+      "name": "Mask",
+      "x": 0,
+      "y": 0,
+      "params": {
+       "name": "Mask",
+       "order": 0,
+       "value": 0,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "in_edge",
+      "type": "subgraph.in_gray",
+      "typeVersion": 1,
+      "name": "Edge",
+      "x": 0,
+      "y": 190,
+      "params": {
+       "name": "Edge",
+       "order": 1,
+       "value": 0,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "body",
+      "type": "color.ramp",
+      "typeVersion": 1,
+      "name": "Body colour",
+      "x": 600,
+      "y": 0,
+      "params": {
+       "gradient": {
+        "stops": [
+         {
+          "pos": 0,
+          "color": [
+           0,
+           0.03,
+           0.1,
+           0
+          ]
+         },
+         {
+          "pos": 0.35,
+          "color": [
+           0.05,
+           0.3,
+           0.8,
+           0.6
+          ]
+         },
+         {
+          "pos": 0.7,
+          "color": [
+           0.3,
+           0.75,
+           1,
+           1
+          ]
+         },
+         {
+          "pos": 1,
+          "color": [
+           0.8,
+           0.97,
+           1,
+           1
+          ]
+         }
+        ],
+        "interp": "oklab"
+       },
+       "in_low": 0,
+       "in_high": 1,
+       "offset": 0,
+       "repeat": 1,
+       "wrap_mode": "clamp",
+       "intensity": 2,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "edge",
+      "type": "color.ramp",
+      "typeVersion": 1,
+      "name": "Edge colour",
+      "x": 600,
+      "y": 190,
+      "params": {
+       "gradient": {
+        "stops": [
+         {
+          "pos": 0,
+          "color": [
+           0,
+           0,
+           0,
+           0
+          ]
+         },
+         {
+          "pos": 0.5,
+          "color": [
+           0.5,
+           0.9,
+           1,
+           0.8
+          ]
+         },
+         {
+          "pos": 1,
+          "color": [
+           1,
+           1,
+           1,
+           1
+          ]
+         }
+        ],
+        "interp": "oklab"
+       },
+       "in_low": 0,
+       "in_high": 1,
+       "offset": 0,
+       "repeat": 1,
+       "wrap_mode": "clamp",
+       "intensity": 4,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "add",
+      "type": "utils.blend_color",
+      "typeVersion": 1,
+      "name": "Add edge",
+      "x": 880,
+      "y": 0,
+      "params": {
+       "blend_type": "add",
+       "cross_mix": 1,
+       "smoothness": 0.1,
+       "opacity": 1,
+       "clamp_output": false,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "out_color",
+      "type": "subgraph.out_color",
+      "typeVersion": 1,
+      "name": "Color",
+      "x": 1440,
+      "y": 0,
+      "params": {
+       "name": "Color",
+       "order": 0
+      }
+     }
+    ],
+    "links": [
+     {
+      "id": "l1",
+      "from": {
+       "node": "in_mask",
+       "pin": "output"
+      },
+      "to": {
+       "node": "body",
+       "pin": "input"
+      }
+     },
+     {
+      "id": "l2",
+      "from": {
+       "node": "in_edge",
+       "pin": "output"
+      },
+      "to": {
+       "node": "edge",
+       "pin": "input"
+      }
+     },
+     {
+      "id": "l3",
+      "from": {
+       "node": "edge",
+       "pin": "output"
+      },
+      "to": {
+       "node": "add",
+       "pin": "foreground"
+      }
+     },
+     {
+      "id": "l4",
+      "from": {
+       "node": "body",
+       "pin": "output"
+      },
+      "to": {
+       "node": "add",
+       "pin": "background"
+      }
+     },
+     {
+      "id": "l5",
+      "from": {
+       "node": "add",
+       "pin": "output"
+      },
+      "to": {
+       "node": "out_color",
+       "pin": "input"
+      }
+     }
+    ]
+   },
+   "exposed": [
+    {
+     "id": "p1",
+     "node": "body",
+     "param": "gradient",
+     "label": "Body gradient",
+     "group": "Colour",
+     "default": {
+      "stops": [
+       {
+        "pos": 0,
+        "color": [
+         0,
+         0.03,
+         0.1,
+         0
+        ]
+       },
+       {
+        "pos": 0.35,
+        "color": [
+         0.05,
+         0.3,
+         0.8,
+         0.6
+        ]
+       },
+       {
+        "pos": 0.7,
+        "color": [
+         0.3,
+         0.75,
+         1,
+         1
+        ]
+       },
+       {
+        "pos": 1,
+        "color": [
+         0.8,
+         0.97,
+         1,
+         1
+        ]
+       }
+      ],
+      "interp": "oklab"
+     },
+     "tooltip": "Colour of the slash body over the mask (HDR stops allowed)."
+    },
+    {
+     "id": "p2",
+     "node": "edge",
+     "param": "gradient",
+     "label": "Edge gradient",
+     "group": "Colour",
+     "default": {
+      "stops": [
+       {
+        "pos": 0,
+        "color": [
+         0,
+         0,
+         0,
+         0
+        ]
+       },
+       {
+        "pos": 0.5,
+        "color": [
+         0.5,
+         0.9,
+         1,
+         0.8
+        ]
+       },
+       {
+        "pos": 1,
+        "color": [
+         1,
+         1,
+         1,
+         1
+        ]
+       }
+      ],
+      "interp": "oklab"
+     },
+     "tooltip": "Colour of the burn edge."
+    },
+    {
+     "id": "p3",
+     "node": "body",
+     "param": "intensity",
+     "label": "Body intensity",
+     "group": "Colour",
+     "default": 2,
+     "min": 0,
+     "max": 32,
+     "tooltip": "HDR multiplier of the body."
+    },
+    {
+     "id": "p4",
+     "node": "edge",
+     "param": "intensity",
+     "label": "Edge intensity",
+     "group": "Colour",
+     "default": 4,
+     "min": 0,
+     "max": 64,
+     "tooltip": "HDR multiplier of the edge glow."
+    }
+   ]
+  }
+ },
+ {
+  "name": "Slash Color - Arcane",
+  "folder": "VFX",
+  "tags": [
+   "vfx",
+   "subgraph",
+   "slash",
+   "sword",
+   "melee",
+   "variant",
+   "arcane",
+   "color"
+  ],
+  "nodeType": "subgraph.sg_vfx_slash_arcane",
+  "typeVersion": 1,
+  "params": {},
+  "subgraph": {
+   "format": "kekenik-subgraph",
+   "id": "sg_vfx_slash_arcane",
+   "name": "Slash Color - Arcane",
+   "description": "Arcane variant of the Slash Color Rig (violet body, pink-white edge).",
+   "tags": [
+    "slash",
+    "sword",
+    "melee",
+    "variant",
+    "arcane",
+    "color"
+   ],
+   "folder": "VFX",
+   "version": 1,
+   "created": "2026-01-01T00:00:00.000Z",
+   "modified": "2026-01-01T00:00:00.000Z",
+   "graph": {
+    "settings": {
+     "width": 1024,
+     "height": 1024,
+     "tiling": "both",
+     "filtering": "linear",
+     "bitDepth": 16,
+     "fps": 30,
+     "loopLength": 64,
+     "seed": 0
+    },
+    "nodes": [
+     {
+      "id": "in_mask",
+      "type": "subgraph.in_gray",
+      "typeVersion": 1,
+      "name": "Mask",
+      "x": 0,
+      "y": 0,
+      "params": {
+       "name": "Mask",
+       "order": 0,
+       "value": 0,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "in_edge",
+      "type": "subgraph.in_gray",
+      "typeVersion": 1,
+      "name": "Edge",
+      "x": 0,
+      "y": 190,
+      "params": {
+       "name": "Edge",
+       "order": 1,
+       "value": 0,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "body",
+      "type": "color.ramp",
+      "typeVersion": 1,
+      "name": "Body colour",
+      "x": 600,
+      "y": 0,
+      "params": {
+       "gradient": {
+        "stops": [
+         {
+          "pos": 0,
+          "color": [
+           0.04,
+           0,
+           0.1,
+           0
+          ]
+         },
+         {
+          "pos": 0.35,
+          "color": [
+           0.35,
+           0.05,
+           0.8,
+           0.6
+          ]
+         },
+         {
+          "pos": 0.7,
+          "color": [
+           0.75,
+           0.2,
+           1,
+           1
+          ]
+         },
+         {
+          "pos": 1,
+          "color": [
+           1,
+           0.7,
+           1,
+           1
+          ]
+         }
+        ],
+        "interp": "oklab"
+       },
+       "in_low": 0,
+       "in_high": 1,
+       "offset": 0,
+       "repeat": 1,
+       "wrap_mode": "clamp",
+       "intensity": 2,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "edge",
+      "type": "color.ramp",
+      "typeVersion": 1,
+      "name": "Edge colour",
+      "x": 600,
+      "y": 190,
+      "params": {
+       "gradient": {
+        "stops": [
+         {
+          "pos": 0,
+          "color": [
+           0,
+           0,
+           0,
+           0
+          ]
+         },
+         {
+          "pos": 0.5,
+          "color": [
+           0.9,
+           0.4,
+           1,
+           0.8
+          ]
+         },
+         {
+          "pos": 1,
+          "color": [
+           1,
+           0.95,
+           1,
+           1
+          ]
+         }
+        ],
+        "interp": "oklab"
+       },
+       "in_low": 0,
+       "in_high": 1,
+       "offset": 0,
+       "repeat": 1,
+       "wrap_mode": "clamp",
+       "intensity": 4,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "add",
+      "type": "utils.blend_color",
+      "typeVersion": 1,
+      "name": "Add edge",
+      "x": 880,
+      "y": 0,
+      "params": {
+       "blend_type": "add",
+       "cross_mix": 1,
+       "smoothness": 0.1,
+       "opacity": 1,
+       "clamp_output": false,
+       "tex_size_mode": "from_parent",
+       "tex_size_mul": [
+        1,
+        1
+       ],
+       "tex_size_abs": [
+        1024,
+        1024
+       ],
+       "tex_filter_mode": "from_parent",
+       "tex_filter": "linear",
+       "tex_tiling_mode": "from_parent",
+       "tex_tiling": "both",
+       "tex_ss": 1
+      }
+     },
+     {
+      "id": "out_color",
+      "type": "subgraph.out_color",
+      "typeVersion": 1,
+      "name": "Color",
+      "x": 1440,
+      "y": 0,
+      "params": {
+       "name": "Color",
+       "order": 0
+      }
+     }
+    ],
+    "links": [
+     {
+      "id": "l1",
+      "from": {
+       "node": "in_mask",
+       "pin": "output"
+      },
+      "to": {
+       "node": "body",
+       "pin": "input"
+      }
+     },
+     {
+      "id": "l2",
+      "from": {
+       "node": "in_edge",
+       "pin": "output"
+      },
+      "to": {
+       "node": "edge",
+       "pin": "input"
+      }
+     },
+     {
+      "id": "l3",
+      "from": {
+       "node": "edge",
+       "pin": "output"
+      },
+      "to": {
+       "node": "add",
+       "pin": "foreground"
+      }
+     },
+     {
+      "id": "l4",
+      "from": {
+       "node": "body",
+       "pin": "output"
+      },
+      "to": {
+       "node": "add",
+       "pin": "background"
+      }
+     },
+     {
+      "id": "l5",
+      "from": {
+       "node": "add",
+       "pin": "output"
+      },
+      "to": {
+       "node": "out_color",
+       "pin": "input"
+      }
+     }
+    ]
+   },
+   "exposed": [
+    {
+     "id": "p1",
+     "node": "body",
+     "param": "gradient",
+     "label": "Body gradient",
+     "group": "Colour",
+     "default": {
+      "stops": [
+       {
+        "pos": 0,
+        "color": [
+         0.04,
+         0,
+         0.1,
+         0
+        ]
+       },
+       {
+        "pos": 0.35,
+        "color": [
+         0.35,
+         0.05,
+         0.8,
+         0.6
+        ]
+       },
+       {
+        "pos": 0.7,
+        "color": [
+         0.75,
+         0.2,
+         1,
+         1
+        ]
+       },
+       {
+        "pos": 1,
+        "color": [
+         1,
+         0.7,
+         1,
+         1
+        ]
+       }
+      ],
+      "interp": "oklab"
+     },
+     "tooltip": "Colour of the slash body over the mask (HDR stops allowed)."
+    },
+    {
+     "id": "p2",
+     "node": "edge",
+     "param": "gradient",
+     "label": "Edge gradient",
+     "group": "Colour",
+     "default": {
+      "stops": [
+       {
+        "pos": 0,
+        "color": [
+         0,
+         0,
+         0,
+         0
+        ]
+       },
+       {
+        "pos": 0.5,
+        "color": [
+         0.9,
+         0.4,
+         1,
+         0.8
+        ]
+       },
+       {
+        "pos": 1,
+        "color": [
+         1,
+         0.95,
+         1,
+         1
+        ]
+       }
+      ],
+      "interp": "oklab"
+     },
+     "tooltip": "Colour of the burn edge."
+    },
+    {
+     "id": "p3",
+     "node": "body",
+     "param": "intensity",
+     "label": "Body intensity",
+     "group": "Colour",
+     "default": 2,
+     "min": 0,
+     "max": 32,
+     "tooltip": "HDR multiplier of the body."
+    },
+    {
+     "id": "p4",
+     "node": "edge",
+     "param": "intensity",
+     "label": "Edge intensity",
+     "group": "Colour",
+     "default": 4,
+     "min": 0,
+     "max": 64,
+     "tooltip": "HDR multiplier of the edge glow."
+    }
+   ]
+  }
+ }
+]

@@ -1,0 +1,72 @@
+{
+ "id": "sprite_pack",
+ "version": 1,
+ "category": [
+  "environment",
+  "flipbooks"
+ ],
+ "tags": [
+  "sprites",
+  "atlas",
+  "packed",
+  "game"
+ ],
+ "difficulty": "intermediate",
+ "preview": "atlas",
+ "thumb": {
+  "node": "atlas"
+ },
+ "tour": [
+  {
+   "node": "atlas",
+   "key": "step1"
+  },
+  {
+   "node": "scatter",
+   "key": "step2"
+  }
+ ],
+ "created": "2026-02-01",
+ "i18n": {
+  "en": {
+   "name": "Sprite Pack",
+   "description": "A flare, a spark, a soft glow and a smoke blob live in one 2×2 atlas. The atlas feeds a Fractal through its Atlas input to scatter random sprites, and the four sprites are also channel-packed into RGBA.",
+   "adapt": "Move a sprite by changing its position / center, or replace a generator with your own mask. The packed export keeps flare = R, spark = G, glow = B, smoke = A.",
+   "tags": {
+    "sprites": "sprites",
+    "atlas": "atlas",
+    "packed": "channel packed",
+    "game": "game-ready"
+   },
+   "frames": {
+    "f_shape": "Shape",
+    "f_inputs": "Inputs",
+    "f_output": "Output"
+   },
+   "tour": {
+    "step1": "All four sprites in one atlas.",
+    "step2": "Fractal reads the atlas through its Atlas input."
+   }
+  },
+  "fa": {
+   "name": "بسته اسپرایت",
+   "description": "یک فلر، یک جرقه، یک درخشش نرم و یک لکه دود در یک اطلس ۲×۲ قرار دارند. اطلس از طریق ورودی Atlas به یک Fractal می‌رسد تا اسپرایت‌های تصادفی پخش کند و چهار اسپرایت در RGBA هم کانال‌پک می‌شوند.",
+   "adapt": "با تغییر موقعیت / مرکز اسپرایت را جابه‌جا کنید یا مولد را با ماسک خودتان عوض کنید. خروجی پک‌شده: فلر = R، جرقه = G، درخشش = B، دود = A.",
+   "tags": {
+    "sprites": "اسپرایت",
+    "atlas": "اطلس",
+    "packed": "کانال‌پک",
+    "game": "آماده بازی"
+   },
+   "frames": {
+    "f_shape": "شکل",
+    "f_inputs": "ورودی‌ها",
+    "f_output": "خروجی"
+   },
+   "tour": {
+    "step1": "هر چهار اسپرایت در یک اطلس.",
+    "step2": "Fractal اطلس را از ورودی Atlas می‌خواند."
+   }
+  }
+ }
+}

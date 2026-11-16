@@ -1,0 +1,60 @@
+{
+ "id": "hit_impact_decals",
+ "version": 1,
+ "category": [
+  "weapons",
+  "flipbooks"
+ ],
+ "tags": [
+  "impact",
+  "decal",
+  "packed",
+  "flipbook"
+ ],
+ "difficulty": "intermediate",
+ "preview": "pack",
+ "thumb": {
+  "node": "pack",
+  "frame": 3
+ },
+ "tour": [],
+ "created": "2026-02-01",
+ "i18n": {
+  "en": {
+   "name": "Hit Impact Decal Set",
+   "description": "An impact flash and shock ring, Worley crack lines and a scorch mask, packed as RGBA (R flash, G cracks, B scorch, A opacity) and exported as a 4×4 flipbook.",
+   "adapt": "Change the crack Scale / seed per material, or time the flash decay with the Intensity keyframes.",
+   "tags": {
+    "impact": "impact",
+    "decal": "decal",
+    "packed": "channel packed",
+    "flipbook": "flipbook"
+   },
+   "frames": {
+    "f_shape": "Shape",
+    "f_inputs": "Inputs",
+    "f_color": "Color",
+    "f_output": "Output"
+   },
+   "tour": {}
+  },
+  "fa": {
+   "name": "مجموعه دکال برخورد",
+   "description": "فلش و حلقه شوک برخورد، خطوط ترک ورلی و ماسک سوختگی، کانال‌پک به‌صورت RGBA (R فلش، G ترک، B سوختگی، A کدری) و خروجی فلیپ‌بوک ۴×۴.",
+   "adapt": "مقیاس و seed ترک‌ها را برای هر متریال تغییر دهید یا محو شدن فلش را با کلیدهای Intensity زمان‌بندی کنید.",
+   "tags": {
+    "impact": "برخورد",
+    "decal": "دکال",
+    "packed": "کانال‌پک",
+    "flipbook": "فلیپ‌بوک"
+   },
+   "frames": {
+    "f_shape": "شکل",
+    "f_inputs": "ورودی‌ها",
+    "f_color": "رنگ",
+    "f_output": "خروجی"
+   },
+   "tour": {}
+  }
+ }
+}

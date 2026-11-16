@@ -1,0 +1,84 @@
+{
+ "id": "campfire_loop",
+ "version": 1,
+ "category": [
+  "fire",
+  "flipbooks",
+  "simulation"
+ ],
+ "tags": [
+  "fire",
+  "smoke",
+  "fluid",
+  "loop",
+  "flipbook"
+ ],
+ "difficulty": "intermediate",
+ "loops": true,
+ "preview": "comp",
+ "thumb": {
+  "node": "comp",
+  "frame": 40
+ },
+ "tour": [
+  {
+   "node": "fluid",
+   "key": "step1"
+  },
+  {
+   "node": "fire",
+   "key": "step2"
+  },
+  {
+   "node": "export",
+   "key": "step3"
+  }
+ ],
+ "created": "2026-02-01",
+ "i18n": {
+  "en": {
+   "name": "Campfire (looping flipbook)",
+   "description": "Fluid 2D with the Campfire preset. Temperature goes through a black-body Ramp, smoke density through a grey Ramp; both are added and baked as a seamless 8×8 flipbook.",
+   "adapt": "Move the emitter line (Emitter 1), change Fuel / Turbulence, or edit the black-body gradient. Keep Loop mode = Crossfade and Loop frames = timeline length.",
+   "tags": {
+    "fire": "fire",
+    "smoke": "smoke",
+    "fluid": "fluid",
+    "loop": "loop",
+    "flipbook": "flipbook"
+   },
+   "frames": {
+    "f_sim": "Simulation",
+    "f_color": "Color",
+    "f_output": "Output"
+   },
+   "tour": {
+    "step1": "Fluid 2D solves fire and smoke. Crossfade makes it loop.",
+    "step2": "Temperature → black-body Ramp.",
+    "step3": "Pre-configured 8×8 flipbook export."
+   }
+  },
+  "fa": {
+   "name": "آتش کمپ (فلیپ‌بوک لوپ)",
+   "description": "سیال دوبعدی با پریست آتش کمپ. دما از یک رمپ جسم سیاه و چگالی دود از یک رمپ خاکستری عبور می‌کند؛ هر دو جمع شده و به شکل فلیپ‌بوک ۸×۸ بدون درز پخته می‌شوند.",
+   "adapt": "خط منبع (Emitter 1) را جابه‌جا کنید، سوخت و تلاطم را تغییر دهید یا گرادیان جسم سیاه را ویرایش کنید. حالت لوپ را روی Crossfade و طول لوپ را برابر طول تایم‌لاین نگه دارید.",
+   "tags": {
+    "fire": "آتش",
+    "smoke": "دود",
+    "fluid": "سیال",
+    "loop": "لوپ",
+    "flipbook": "فلیپ‌بوک"
+   },
+   "frames": {
+    "f_sim": "شبیه‌سازی",
+    "f_color": "رنگ",
+    "f_output": "خروجی"
+   },
+   "tour": {
+    "step1": "سیال دوبعدی آتش و دود را حل می‌کند. کراس‌فید آن را لوپ می‌کند.",
+    "step2": "دما ← رمپ جسم سیاه.",
+    "step3": "خروجی فلیپ‌بوک ۸×۸ از پیش تنظیم‌شده."
+   }
+  }
+ }
+}

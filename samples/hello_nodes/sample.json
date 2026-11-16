@@ -1,0 +1,53 @@
+{
+ "id": "hello_nodes",
+ "version": 1,
+ "category": [
+  "beginner"
+ ],
+ "tags": [
+  "tutorial",
+  "tileable"
+ ],
+ "difficulty": "beginner",
+ "roleFrames": false,
+ "preview": "ramp",
+ "thumb": {
+  "node": "ramp"
+ },
+ "tour": [],
+ "created": "2026-02-01",
+ "i18n": {
+  "en": {
+   "name": "Hello Nodes (tutorial)",
+   "description": "The smallest useful graph: Noise → Levels → Ramp → Export. Four numbered comment frames explain each step.",
+   "adapt": "Click a node and change a parameter: the preview updates live. Add a Blur or a second Noise between the steps.",
+   "tags": {
+    "tutorial": "tutorial",
+    "tileable": "tileable"
+   },
+   "frames": {
+    "f_step1": "1 · Noise makes a pattern",
+    "f_step2": "2 · Levels sets contrast",
+    "f_step3": "3 · Ramp adds colour",
+    "f_step4": "4 · Export saves a file"
+   },
+   "tour": {}
+  },
+  "fa": {
+   "name": "سلام گره‌ها (آموزش)",
+   "description": "کوچک‌ترین گراف مفید: نویز ← Levels ← رمپ ← خروجی. چهار فریم شماره‌دار هر مرحله را توضیح می‌دهند.",
+   "adapt": "روی یک گره کلیک و پارامتر را تغییر دهید: پیش‌نمایش زنده به‌روز می‌شود. بین مراحل یک Blur یا نویز دوم اضافه کنید.",
+   "tags": {
+    "tutorial": "آموزش",
+    "tileable": "کاشی‌پذیر"
+   },
+   "frames": {
+    "f_step1": "۱ · نویز یک الگو می‌سازد",
+    "f_step2": "۲ · Levels کنتراست را تنظیم می‌کند",
+    "f_step3": "۳ · رمپ رنگ اضافه می‌کند",
+    "f_step4": "۴ · خروجی فایل را ذخیره می‌کند"
+   },
+   "tour": {}
+  }
+ }
+}

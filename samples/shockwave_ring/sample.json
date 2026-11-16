@@ -1,0 +1,78 @@
+{
+ "id": "shockwave_ring",
+ "version": 1,
+ "category": [
+  "weapons",
+  "energy",
+  "meshes",
+  "flipbooks"
+ ],
+ "tags": [
+  "shockwave",
+  "mesh",
+  "warp",
+  "distortion",
+  "flipbook"
+ ],
+ "difficulty": "intermediate",
+ "preview": "color",
+ "thumb": {
+  "node": "color",
+  "frame": 14
+ },
+ "view": {
+  "mesh": "vc",
+  "material": "color",
+  "mat": {
+   "blend": "additive",
+   "doubleSided": true
+  },
+  "display": "unlit"
+ },
+ "tour": [],
+ "created": "2026-02-01",
+ "i18n": {
+  "en": {
+   "name": "Shockwave Ring",
+   "description": "A ring mesh with polar UVs and radial vertex colour, a texture made from noise through Cartesian-to-Polar plus an expanding ring mask, and a radial distortion warp map exported as a flipbook.",
+   "adapt": "Drive the ring size keyframes for a faster blast. The warp map’s Strength is what the shader multiplies.",
+   "tags": {
+    "shockwave": "shockwave",
+    "mesh": "mesh",
+    "warp": "warp",
+    "distortion": "distortion",
+    "flipbook": "flipbook"
+   },
+   "frames": {
+    "f_mesh": "Mesh",
+    "f_inputs": "Inputs",
+    "f_shape": "Shape",
+    "f_color": "Color",
+    "f_motion": "Motion",
+    "f_output": "Output"
+   },
+   "tour": {}
+  },
+  "fa": {
+   "name": "حلقه موج شوک",
+   "description": "مش حلقه با UV قطبی و رنگ رأس شعاعی، تکسچری از نویز با تبدیل دکارتی به قطبی و ماسک حلقه در حال گسترش، و نقشه وارپ اعوجاج شعاعی که به‌صورت فلیپ‌بوک خروجی می‌گیرد.",
+   "adapt": "کلیدهای اندازه حلقه را برای انفجار سریع‌تر تغییر دهید. قدرت نقشه وارپ همان چیزی است که شیدر ضرب می‌کند.",
+   "tags": {
+    "shockwave": "موج شوک",
+    "mesh": "مش",
+    "warp": "وارپ",
+    "distortion": "اعوجاج",
+    "flipbook": "فلیپ‌بوک"
+   },
+   "frames": {
+    "f_mesh": "مش",
+    "f_inputs": "ورودی‌ها",
+    "f_shape": "شکل",
+    "f_color": "رنگ",
+    "f_motion": "حرکت",
+    "f_output": "خروجی"
+   },
+   "tour": {}
+  }
+ }
+}

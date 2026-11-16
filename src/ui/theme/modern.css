@@ -1,0 +1,361 @@
+/* ============================================================================================
+ * modern, minimal, compact visual system. Imported LAST: it re-declares tokens and refines components.
+ * All sizes are rem: html font-size = 12px * --ui-scale, so the UI scale setting scales everything live.
+ * Density: html[data-density=compact|comfortable]. Theme: html[data-theme=dark|light].
+ * RTL: html[dir=rtl] mirrors the chrome through logical properties; spatial content stays LTR (see perf.css).
+ * ========================================================================================== */
+
+/* BUGFIX: `:root { font-size: var(--fs-md) }` (theme.css) out-ranked `html { font-size: calc(12px * scale) }`, so the root stayed 16px and
+ * the UI scale did nothing (and everything was 33% bigger than designed). Specificity (0,1,1) wins. */
+html:root {
+  font-size: calc(12px * var(--ui-scale, 1));
+}
+body {
+  font-size: var(--fs-md);
+  line-height: 1.4;
+}
+html[lang='fa'] body,
+html[lang='fa'] input,
+html[lang='fa'] button,
+html[lang='fa'] select {
+  line-height: 1.65;
+}
+
+:root {
+  /* system stack only (no CDN); drop a self-hosted Vazirmatn / Inter in public/fonts (see README there) */
+  --font: ui-sans-serif, system-ui, 'Segoe UI', 'Vazirmatn', Tahoma, Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --fs-xs: 0.833rem; /* 10px */
+  --fs-sm: 0.917rem; /* 11px: secondary */
+  --fs-md: 1rem; /* 12px: base */
+  --fs-lg: 1.083rem; /* 13px: titles */
+  --fs-xl: 1.25rem;
+  --radius: 0.333rem; /* 4px controls */
+  --radius-lg: 0.5rem; /* 6px panels / floating windows / popovers */
+  --shadow: 0 0.333rem 1.167rem rgba(0, 0, 0, 0.32);
+  --shadow-sm: 0 0.167rem 0.5rem rgba(0, 0, 0, 0.24);
+  --dur: 120ms;
+  /* density tokens (compact default): tab 26px, panel header 24px, row 22px, input 22px, toolbar 32px, status 22px, node header 22px */
+  --h-tab: 2.167rem;
+  --h-panelhead: 2rem;
+  --h-row: 1.833rem;
+  --h-input: 1.833rem;
+  --h-toolbar: 2.667rem;
+  --h-status: 1.833rem;
+  --h-menubar: 2.167rem;
+  --h-node: 1.833rem;
+  --ico: 1.167rem;
+  --row-h: var(--h-row);
+  --pad: 0.5rem;
+  --gap: 0.333rem;
+  --hairline: color-mix(in srgb, var(--line) 80%, transparent);
+  --canvas-bg: #0b0c0e;
+  --checker-a: #1c1f25;
+  --checker-b: #262a30;
+  --viewport-clear: #0e1013;
+  --grid-line: rgba(255, 255, 255, 0.06);
+}
+html[data-density='comfortable'] {
+  --h-tab: 2.5rem;
+  --h-panelhead: 2.333rem;
+  --h-row: 2.167rem;
+  --h-input: 2.167rem;
+  --h-toolbar: 3rem;
+  --h-status: 2.167rem;
+  --h-menubar: 2.5rem;
+  --h-node: 2.167rem;
+  --pad: 0.667rem;
+  --gap: 0.5rem;
+}
+
+/* ---------------------------------------------------------------- light theme (designed, not inverted) */
+html[data-theme='light'] {
+  --bg0: #e6eaf1;
+  --bg1: #f6f8fb;
+  --bg2: #eef1f6;
+  --bg3: #e2e7ef;
+  --bg4: #d3dae6;
+  --line: #d8dde7;
+  --line2: #c4ccd9;
+  --text: #1c2230;
+  --text2: #455166;
+  --dim: #5f6b82;
+  --faint: #8792a6;
+  --ok: #17824f;
+  --warn: #9a5d00;
+  --bad: #c3352d;
+  --info: #226cac;
+  --shadow: 0 0.333rem 1.167rem rgba(38, 52, 82, 0.16), 0 0 0 1px rgba(38, 52, 82, 0.06);
+  --shadow-sm: 0 0.167rem 0.5rem rgba(38, 52, 82, 0.12);
+  --canvas-bg: #dde2eb;
+  --checker-a: #ffffff;
+  --checker-b: #e3e7ee;
+  --viewport-clear: #e9edf3;
+  --grid-line: rgba(28, 34, 48, 0.09);
+  color-scheme: light;
+}
+html[data-theme='light'] button:hover {
+  border-color: var(--line2);
+}
+html[data-theme='light'] button.primary,
+html[data-theme='light'] .k-btn.primary {
+  color: #fff;
+}
+html[data-theme='light'] ::selection {
+  background: var(--accent-bg2);
+}
+
+/* ---------------------------------------------------------------- flat, calm controls */
+button {
+  padding: 0 0.667rem;
+  min-block-size: var(--h-input);
+  background: var(--bg3);
+  border-color: var(--hairline);
+  transition: background var(--dur), border-color var(--dur), color var(--dur);
+}
+input:not([type='checkbox']):not([type='radio']):not([type='range']):not([type='color']),
+select,
+textarea {
+  min-block-size: var(--h-input);
+  border-radius: var(--radius);
+}
+select {
+  background: var(--bg2);
+  border: 1px solid var(--hairline);
+  padding-inline: 0.333rem;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--text) 22%, transparent) transparent;
+}
+::-webkit-scrollbar {
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--text) 22%, transparent);
+  border-radius: 0.25rem;
+  border: 0;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------------------------------------------------------------- chrome */
+.k-menubar {
+  block-size: var(--h-menubar);
+  height: var(--h-menubar);
+  border-bottom-color: var(--hairline);
+  padding-inline: var(--pad);
+}
+.k-brand {
+  margin-inline-end: 0;
+  margin-inline-end: var(--s4);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+.k-menu-btn {
+  padding: 0 0.5rem;
+  min-block-size: 1.667rem;
+  font-size: var(--fs-md);
+}
+.k-toolbar {
+  height: var(--h-toolbar);
+  gap: var(--gap);
+  padding-inline: var(--pad);
+  border-bottom-color: var(--hairline);
+}
+.k-tb-label {
+  text-transform: none;
+  letter-spacing: 0;
+  margin-inline-end: 0;
+  margin-inline-end: 0;
+  font-size: var(--fs-sm);
+}
+.k-ibtn {
+  inline-size: var(--h-input);
+  block-size: var(--h-input);
+  min-block-size: 0;
+  transition: background var(--dur), color var(--dur);
+}
+.k-ibtn.sm {
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+}
+.k-ibtn svg {
+  inline-size: var(--ico);
+  block-size: var(--ico);
+  stroke-width: 1.5;
+}
+.k-statusbar {
+  height: var(--h-status);
+  gap: var(--s4);
+  border-top-color: var(--hairline);
+  padding-inline: var(--pad);
+}
+.k-statusbar .k-flat,
+.k-statusbar select {
+  background: transparent;
+  border-color: transparent;
+  min-block-size: 0;
+  padding: 0 0.25rem;
+  font-size: var(--fs-xs);
+  color: var(--text2);
+}
+.k-statusbar .k-flat:hover {
+  background: var(--bg3);
+}
+.k-warn-text {
+  color: var(--warn);
+}
+.k-title {
+  left: auto;
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+}
+html[dir='rtl'] .k-title {
+  transform: translateX(50%);
+}
+
+/* docking: flat tabs with a thin accent underline */
+.k-tabbar {
+  height: var(--h-tab);
+  border-bottom-color: var(--hairline);
+}
+.k-pane.focus .k-tabbar {
+  box-shadow: none;
+}
+.k-tab {
+  gap: 0.333rem;
+  padding: 0 0.333rem 0 0.667rem;
+  padding-inline: 0.667rem 0.333rem;
+  border-inline-end: 0;
+  border-inline-end: 0;
+  transition: background var(--dur), color var(--dur);
+}
+.k-tab.active {
+  background: transparent;
+  box-shadow: inset 0 -0.125rem 0 var(--accent);
+}
+.k-pane.focus .k-tab.active {
+  box-shadow: inset 0 -0.125rem 0 var(--accent);
+}
+.k-panel-head,
+.k-props-head,
+.k-gal-head {
+  min-block-size: var(--h-panelhead);
+}
+.k-lib-item,
+.k-outline-row,
+.k-tree-row,
+.k-prow {
+  min-block-size: var(--h-row);
+}
+.k-lib-item,
+.k-outline-row {
+  height: var(--h-row);
+  border-inline-start: 0;
+  border-inline-start: 0.167rem solid transparent;
+  padding-inline-start: 0;
+  padding-inline: 1.25rem 0.5rem;
+}
+.k-lib-cat {
+  height: var(--h-row);
+  text-transform: none;
+  letter-spacing: 0;
+  background: transparent;
+  border-top: 0;
+  border-bottom-color: var(--hairline);
+  font-weight: 600;
+}
+.k-lib-cat .count {
+  margin-inline-start: 0;
+  margin-inline-start: auto;
+}
+.k-num {
+  min-block-size: var(--h-input);
+  block-size: var(--h-input);
+}
+.k-vp {
+  background: var(--canvas-bg);
+}
+.k-bigmeter {
+  border-radius: var(--radius);
+}
+/* popovers / floating windows / menus: the only places with a shadow */
+.k-menu,
+.k-popover,
+.k-modal,
+.k-toast,
+.k-float,
+.k-tooltip {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  border-color: var(--hairline);
+}
+/* headings: no uppercase shouting */
+h1,
+h2,
+h3,
+th,
+.k-sec-title,
+.k-group-title {
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 600;
+}
+b,
+strong {
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------- RTL: chrome mirrors, spatial content stays LTR */
+html[dir='rtl'] {
+  font-family: 'Vazirmatn', var(--font);
+}
+html[dir='rtl'] .k-menubar,
+html[dir='rtl'] .k-toolbar,
+html[dir='rtl'] .k-statusbar,
+html[dir='rtl'] .k-tabbar,
+html[dir='rtl'] .k-tabs-scroll {
+  direction: rtl;
+}
+html[dir='rtl'] .k-tab .k-tab-x {
+  margin-inline-start: auto;
+}
+html[dir='rtl'] .k-ibtn svg[data-dir='arrow'],
+html[dir='rtl'] .k-chev,
+html[dir='rtl'] svg.k-mirror {
+  transform: scaleX(-1);
+}
+/* the dock itself keeps a LTR coordinate system (left/top pixel rects, sashes, drop zones are absolute); only text inside panes flips */
+html[dir='rtl'] .k-dock-root {
+  direction: ltr;
+}
+html[dir='rtl'] .k-dock-root .k-pane > :not(.k-vp):not([class*='k-graph']):not([class*='k-timeline']):not([class*='k-curve']) {
+  direction: rtl;
+}
+html[dir='rtl'] .k-dock-root .k-tabbar {
+  direction: rtl;
+}
+/* mixed English tokens (file names, node ids, units) never break the surrounding Persian sentence */
+bdi,
+.k-ltr,
+code,
+kbd {
+  unicode-bidi: isolate;
+}
+input[type='text'],
+input[type='search'],
+textarea {
+  unicode-bidi: plaintext;
+}
+html[dir='rtl'] input[type='text'][dir='auto'] {
+  text-align: start;
+}
+
+/* viewport stage backgrounds follow the theme (the 2D viewport shows transparency over a neutral surface, the 3D one is the scene backdrop) */
+.k-vp2-stage { background: var(--bg0); }
+.k-vp3-stage { background: var(--bg1); }
+html[data-theme='light'] .k-vp2-stage { background: #dde2ea; }
+html[data-theme='light'] .k-vp3-stage { background: #e6eaf0; }

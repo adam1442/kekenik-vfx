@@ -1,0 +1,969 @@
+{
+ "version": 1,
+ "samples": [
+  {
+   "id": "alien_skin_tileable",
+   "version": 1,
+   "folder": "alien_skin_tileable",
+   "category": [
+    "environment",
+    "tiling",
+    "simulation"
+   ],
+   "tags": [
+    "skin",
+    "organic",
+    "tileable",
+    "normal",
+    "packed",
+    "simulation"
+   ],
+   "difficulty": "intermediate",
+   "features": {
+    "loops": false,
+    "tileable": true,
+    "mesh": false,
+    "simulation": true,
+    "flipbook": false,
+    "exportReady": true
+   },
+   "nodesUsed": [
+    "color.ramp",
+    "export.color",
+    "export.multimask",
+    "export.normal",
+    "normal.create",
+    "simulation.reaction_diffusion",
+    "utils.blur",
+    "utils.edge_detect",
+    "utils.levels"
+   ],
+   "nodeCount": 9,
+   "resolution": [
+    512,
+    512
+   ],
+   "memoryMB": 74.5,
+   "hash": "8593b396de6139e3",
+   "created": "2026-02-01"
+  },
+  {
+   "id": "burn_dissolve_reveal",
+   "version": 1,
+   "folder": "burn_dissolve_reveal",
+   "category": [
+    "fire",
+    "environment",
+    "simulation",
+    "flipbooks"
+   ],
+   "tags": [
+    "burn",
+    "dissolve",
+    "fire",
+    "simulation",
+    "flipbook"
+   ],
+   "difficulty": "intermediate",
+   "features": {
+    "loops": false,
+    "tileable": false,
+    "mesh": false,
+    "simulation": true,
+    "flipbook": true,
+    "exportReady": true
+   },
+   "nodesUsed": [
+    "color.ramp",
+    "export.color",
+    "export.mask",
+    "grayscale.gradient",
+    "grayscale.noise",
+    "simulation.burn_front",
+    "utils.alpha_merge",
+    "utils.blend_color",
+    "utils.math"
+   ],
+   "nodeCount": 12,
+   "resolution": [
+    512,
+    512
+   ],
+   "memoryMB": 76,
+   "hash": "b783af79cb4372b0",
+   "created": "2026-02-01"
+  },
+  {
+   "id": "campfire_loop",
+   "version": 1,
+   "folder": "campfire_loop",
+   "category": [
+    "fire",
+    "flipbooks",
+    "simulation"
+   ],
+   "tags": [
+    "fire",
+    "smoke",
+    "fluid",
+    "loop",
+    "flipbook"
+   ],
+   "difficulty": "intermediate",
+   "features": {
+    "loops": true,
+    "tileable": false,
+    "mesh": false,
+    "simulation": true,
+    "flipbook": true,
+    "exportReady": true
+   },
+   "nodesUsed": [
+    "color.ramp",
+    "export.color",
+    "simulation.fluid2d",
+    "utils.blend_color",
+    "utils.sheet_encode"
+   ],
+   "nodeCount": 6,
+   "resolution": [
+    512,
+    512
+   ],
+   "memoryMB": 203,
+   "hash": "c7dc74c0bb5a03aa",
+   "created": "2026-02-01"
+  },
+  {
+   "id": "energy_beam_mesh",
+   "version": 1,
+   "folder": "energy_beam_mesh",
+   "category": [
+    "energy",
+    "meshes",
+    "magic"
+   ],
+   "tags": [
+    "beam",
+    "mesh",
+    "sweep",
+    "spline",
+    "energy"
+   ],
+   "difficulty": "intermediate",
+   "features": {
+    "loops": true,
+    "tileable": true,
+    "mesh": true,
+    "simulation": false,
+    "flipbook": false,
+    "exportReady": true
+   },
+   "nodesUsed": [
+    "color.ramp",
+    "export.color",
+    "export.mesh",
+    "geometry.spline_shape",
+    "geometry.sweep",
+    "grayscale.noise",
+    "utils.levels"
+   ],
+   "nodeCount": 7,
+   "resolution": [
+    512,
+    512
+   ],
+   "memoryMB": 6,
+   "hash": "118e5c51f7cc150b",
+   "created": "2026-02-01"
+  },
+  {
+   "id": "fireball_explosion",
+   "version": 1,
+   "folder": "fireball_explosion",
+   "category": [
+    "fire",
+    "flipbooks",
+    "simulation"
+   ],
+   "tags": [
+    "fire",
+    "smoke",
+    "explosion",
+    "fluid",
+    "flipbook",
+    "packed"
+   ],
+   "difficulty": "advanced",
+   "features": {
+    "loops": false,
+    "tileable": false,
+    "mesh": false,
+    "simulation": true,
+    "flipbook": true,
+    "exportReady": true
+   },
+   "nodesUsed": [
+    "color.ramp",
+    "export.color",
+    "simulation.fluid2d",
+    "utils.blend",
+    "utils.blend_color",
+    "utils.levels",
+    "utils.rgba_merge",
+    "utils.sheet_encode"
+   ],
+   "nodeCount": 10,
+   "resolution": [
+    512,
+    512
+   ],
+   "memoryMB": 149,
+   "hash": "5509063cb0f0912",
+   "created": "2026-02-01"
+  },
+  {
+   "id": "heat_haze_distortion",
+   "version": 1,
+   "folder": "heat_haze_distortion",
+   "category": [
+    "fire",
+    "environment",
+    "flipbooks"
+   ],
+   "tags": [
+    "distortion",
+    "warp",
+    "vector",
+    "loop",
+    "flipbook"
+   ],
+   "difficulty": "beginner",
+   "features": {
+    "loops": true,
+    "tileable": false,
+    "mesh": false,
+    "simulation": false,
+    "flipbook": true,
+    "exportReady": true
+   },
+   "nodesUsed": [
+    "export.warp",
+    "grayscale.gradient",
+    "utils.grid",
+    "utils.transform",
+    "utils.vector_to_uv",
+    "vector.noise"
+   ],
+   "nodeCount": 7,
+   "resolution": [
+    256,
+    256
+   ],
+   "memoryMB": 1.9,
+   "hash": "bdd56f96a8df2915",
+   "created": "2026-02-01"
+  },
+  {
+   "id": "hello_nodes",
+   "version": 1,
+   "folder": "hello_nodes",
+   "category": [
+    "beginner"
+   ],
+   "tags": [
+    "tutorial",
+    "tileable"
+   ],
+   "difficulty": "beginner",
+   "features": {
+    "loops": false,
+    "tileable": true,
+    "mesh": false,
+    "simulation": false,
+    "flipbook": false,
+    "exportReady": true
+   },
+   "nodesUsed": [
+    "color.ramp",
+    "export.color",
+    "grayscale.noise",
+    "utils.levels"
+   ],
+   "nodeCount": 4,
+   "resolution": [
+    512,
+    512
+   ],
+   "memoryMB": 6,
+   "hash": "85a17c7c30714013",
+   "created": "2026-02-01"
+  },
+  {
+   "id": "hit_impact_decals",
+   "version": 1,
+   "folder": "hit_impact_decals",
+   "category": [
+    "weapons",
+    "flipbooks"
+   ],
+   "tags": [
+    "impact",
+    "decal",
+    "packed",
+    "flipbook"
+   ],
+   "difficulty": "intermediate",
+   "features": {
+    "loops": false,
+    "tileable": false,
+    "mesh": false,
+    "simulation": false,
+    "flipbook": true,
+    "exportReady": true
+   },
+   "nodesUsed": [
+    "color.ramp",
+    "export.color",
+    "grayscale.gradient",
+    "grayscale.noise",
+    "grayscale.ripple",
+    "grayscale.starburst",
+    "utils.blend",
+    "utils.rgba_merge"
+   ],
+   "nodeCount": 12,
+   "resolution": [
+    256,
+    256
+   ],
+   "memoryMB": 2.5,
+   "hash": "aaf6c66788998afd",
+   "created": "2026-02-01"
+  },
+  {
+   "id": "ink_in_water",
+   "version": 1,
+   "folder": "ink_in_water",
+   "category": [
+    "water",
+    "tiling",
+    "simulation"
+   ],
+   "tags": [
+    "ink",
+    "fluid",
+    "tileable",
+    "water",
+    "simulation"
+   ],
+   "difficulty": "intermediate",
+   "features": {
+    "loops": false,
+    "tileable": true,
+    "mesh": false,
+    "simulation": true,
+    "flipbook": false,
+    "exportReady": true
+   },
+   "nodesUsed": [
+    "color.ramp",
+    "export.color",
+    "export.mask",
+    "simulation.fluid2d",
+    "utils.levels",
+    "utils.tile_color"
+   ],
+   "nodeCount": 6,
+   "resolution": [
+    512,
+    512
+   ],
+   "memoryMB": 75,
+   "hash": "8542ea417f26058e",
+   "created": "2026-02-01"
+  },
+  {
+   "id": "lightning_strike",
+   "version": 1,
+   "folder": "lightning_strike",
+   "category": [
+    "lightning",
+    "energy",
+    "meshes"
+   ],
+   "tags": [
+    "lightning",
+    "spline",
+    "mesh",
+    "sweep",
+    "loop",
+    "flipbook"
+   ],
+   "difficulty": "intermediate",
+   "features": {
+    "loops": true,
+    "tileable": false,
+    "mesh": true,
+    "simulation": false,
+    "flipbook": true,
+    "exportReady": true
+   },
+   "nodesUsed": [
+    "color.ramp",
+    "export.color",
+    "export.mask",
+    "export.mesh",
+    "geometry.spline_shape",
+    "geometry.sweep",
+    "geometry.transform",
+    "grayscale.spline",
+    "simulation.lightning",
+    "utils.glow"
+   ],
+   "nodeCount": 10,
+   "resolution": [
+    512,
+    512
+   ],
+   "memoryMB": 7,
+   "hash": "e6e62249ff30604a",
+   "created": "2026-02-01"
+  },
+  {
+   "id": "magic_rune_circle",
+   "version": 1,
+   "folder": "magic_rune_circle",
+   "category": [
+    "magic",
+    "tiling",
+    "flipbooks"
+   ],
+   "tags": [
+    "rune",
+    "magic",
+    "spline",
+    "tileable",
+    "loop"
+   ],
+   "difficulty": "intermediate",
+   "features": {
+    "loops": true,
+    "tileable": true,
+    "mesh": false,
+    "simulation": false,
+    "flipbook": false,
+    "exportReady": true
+   },
+   "nodesUsed": [
+    "color.ramp",
+    "export.color",
+    "export.mask",
+    "geometry.spline_combine",
+    "geometry.spline_shape",
+    "grayscale.gradient",
+    "grayscale.polar_scatter",
+    "grayscale.shape",
+    "grayscale.spline",
+    "utils.blend",
+    "utils.grid"
+   ],
+   "nodeCount": 17,
+   "resolution": [
+    512,
+    512
+   ],
+   "memoryMB": 11,
+   "hash": "110562fbdfad7826",
+   "created": "2026-02-01"
+  },
+  {
+   "id": "magic_vortex_portal",
+   "version": 1,
+   "folder": "magic_vortex_portal",
+   "category": [
+    "magic",
+    "energy",
+    "flipbooks"
+   ],
+   "tags": [
+    "portal",
+    "magic",
+    "vector",
+    "loop",
+    "flipbook"
+   ],
+   "difficulty": "intermediate",
+   "features": {
+    "loops": true,
+    "tileable": false,
+    "mesh": false,
+    "simulation": false,
+    "flipbook": true,
+    "exportReady": true
+   },
+   "nodesUsed": [
+    "color.ramp",
+    "export.color",
+    "grayscale.gradient",
+    "grayscale.polar_scatter",
+    "utils.blend",
+    "utils.glow_color",
+    "utils.levels",
+    "vector.advect",
+    "vector.vortex"
+   ],
+   "nodeCount": 9,
+   "resolution": [
+    512,
+    512
+   ],
+   "memoryMB": 8.5,
+   "hash": "307edf79efe3ccae",
+   "created": "2026-02-01"
+  },
+  {
+   "id": "motion_vector_showcase",
+   "version": 1,
+   "folder": "motion_vector_showcase",
+   "category": [
+    "flipbooks",
+    "simulation"
+   ],
+   "tags": [
+    "motion",
+    "vector",
+    "flipbook",
+    "loop"
+   ],
+   "difficulty": "advanced",
+   "features": {
+    "loops": true,
+    "tileable": false,
+    "mesh": false,
+    "simulation": false,
+    "flipbook": true,
+    "exportReady": true
+   },
+   "nodesUsed": [
+    "color.ramp",
+    "export.color",
+    "export.motion_vector",
+    "grayscale.shape",
+    "utils.blend",
+    "utils.sheet_encode",
+    "vector.motion_generate",
+    "vector.motion_interpolate"
+   ],
+   "nodeCount": 9,
+   "resolution": [
+    256,
+    256
+   ],
+   "memoryMB": 8.1,
+   "hash": "2ff0860fe8d08d8",
+   "created": "2026-02-01"
+  },
+  {
+   "id": "shield_bubble",
+   "version": 1,
+   "folder": "shield_bubble",
+   "category": [
+    "energy",
+    "meshes",
+    "magic"
+   ],
+   "tags": [
+    "shield",
+    "mesh",
+    "energy",
+    "ripple",
+    "simulation",
+    "loop"
+   ],
+   "difficulty": "advanced",
+   "features": {
+    "loops": true,
+    "tileable": true,
+    "mesh": true,
+    "simulation": true,
+    "flipbook": false,
+    "exportReady": true
+   },
+   "nodesUsed": [
+    "color.ramp",
+    "export.color",
+    "export.mask",
+    "export.mesh",
+    "geometry.combine_color",
+    "geometry.shapes",
+    "simulation.wave",
+    "utils.blend",
+    "utils.grid",
+    "utils.levels"
+   ],
+   "nodeCount": 10,
+   "resolution": [
+    512,
+    512
+   ],
+   "memoryMB": 73.5,
+   "hash": "99e88884e91d3085",
+   "created": "2026-02-01"
+  },
+  {
+   "id": "shockwave_ring",
+   "version": 1,
+   "folder": "shockwave_ring",
+   "category": [
+    "weapons",
+    "energy",
+    "meshes",
+    "flipbooks"
+   ],
+   "tags": [
+    "shockwave",
+    "mesh",
+    "warp",
+    "distortion",
+    "flipbook"
+   ],
+   "difficulty": "intermediate",
+   "features": {
+    "loops": false,
+    "tileable": false,
+    "mesh": true,
+    "simulation": false,
+    "flipbook": true,
+    "exportReady": true
+   },
+   "nodesUsed": [
+    "color.ramp",
+    "export.color",
+    "export.mesh",
+    "export.warp",
+    "geometry.combine_color",
+    "geometry.shapes",
+    "grayscale.noise",
+    "grayscale.shape",
+    "utils.blend",
+    "utils.cartesian_to_polar",
+    "uv.radial"
+   ],
+   "nodeCount": 11,
+   "resolution": [
+    256,
+    256
+   ],
+   "memoryMB": 2,
+   "hash": "9ed95af8d67ec8e5",
+   "created": "2026-02-01"
+  },
+  {
+   "id": "smoke_puff_loop",
+   "version": 1,
+   "folder": "smoke_puff_loop",
+   "category": [
+    "fire",
+    "flipbooks",
+    "simulation"
+   ],
+   "tags": [
+    "smoke",
+    "fluid",
+    "loop",
+    "flipbook",
+    "normal"
+   ],
+   "difficulty": "intermediate",
+   "features": {
+    "loops": true,
+    "tileable": false,
+    "mesh": false,
+    "simulation": true,
+    "flipbook": true,
+    "exportReady": true
+   },
+   "nodesUsed": [
+    "color.ramp",
+    "export.color",
+    "normal.normal_to_color",
+    "simulation.fluid2d",
+    "utils.alpha_merge",
+    "utils.blend_color",
+    "utils.levels",
+    "utils.rgb_to_grayscale",
+    "utils.sheet_encode"
+   ],
+   "nodeCount": 10,
+   "resolution": [
+    512,
+    512
+   ],
+   "memoryMB": 205,
+   "hash": "29f022e54abdd760",
+   "created": "2026-02-01"
+  },
+  {
+   "id": "sprite_pack",
+   "version": 1,
+   "folder": "sprite_pack",
+   "category": [
+    "environment",
+    "flipbooks"
+   ],
+   "tags": [
+    "sprites",
+    "atlas",
+    "packed",
+    "game"
+   ],
+   "difficulty": "intermediate",
+   "features": {
+    "loops": false,
+    "tileable": false,
+    "mesh": false,
+    "simulation": false,
+    "flipbook": false,
+    "exportReady": true
+   },
+   "nodesUsed": [
+    "export.color",
+    "export.mask",
+    "grayscale.fractal",
+    "grayscale.gradient",
+    "grayscale.noise",
+    "grayscale.shape",
+    "grayscale.starburst",
+    "utils.blend",
+    "utils.rgba_merge"
+   ],
+   "nodeCount": 13,
+   "resolution": [
+    1024,
+    1024
+   ],
+   "memoryMB": 42,
+   "hash": "7181866ad27ee2d0",
+   "created": "2026-02-01"
+  },
+  {
+   "id": "sword_slash_arc",
+   "version": 1,
+   "folder": "sword_slash_arc",
+   "category": [
+    "weapons",
+    "meshes"
+   ],
+   "tags": [
+    "slash",
+    "sword",
+    "mesh",
+    "sweep",
+    "spline",
+    "loop"
+   ],
+   "difficulty": "intermediate",
+   "features": {
+    "loops": true,
+    "tileable": true,
+    "mesh": true,
+    "simulation": false,
+    "flipbook": false,
+    "exportReady": true
+   },
+   "nodesUsed": [
+    "color.ramp",
+    "export.mask",
+    "export.mesh",
+    "geometry.spline_shape",
+    "geometry.sweep",
+    "grayscale.noise",
+    "grayscale.shape",
+    "utils.blend",
+    "utils.levels"
+   ],
+   "nodeCount": 9,
+   "resolution": [
+    512,
+    512
+   ],
+   "memoryMB": 7,
+   "hash": "5b05bac393849d76",
+   "created": "2026-02-01"
+  },
+  {
+   "id": "tileable_lava_energy",
+   "version": 1,
+   "folder": "tileable_lava_energy",
+   "category": [
+    "environment",
+    "tiling",
+    "flipbooks"
+   ],
+   "tags": [
+    "lava",
+    "tileable",
+    "loop",
+    "normal",
+    "game",
+    "flipbook"
+   ],
+   "difficulty": "advanced",
+   "features": {
+    "loops": true,
+    "tileable": true,
+    "mesh": false,
+    "simulation": false,
+    "flipbook": false,
+    "exportReady": true
+   },
+   "nodesUsed": [
+    "color.ramp",
+    "export.mask",
+    "export.normal",
+    "grayscale.fractal",
+    "grayscale.noise",
+    "normal.create",
+    "utils.blend",
+    "utils.levels",
+    "utils.tile",
+    "vector.advect",
+    "vector.noise"
+   ],
+   "nodeCount": 13,
+   "resolution": [
+    512,
+    512
+   ],
+   "memoryMB": 10.5,
+   "hash": "e3cdb98f65627ab",
+   "created": "2026-02-01"
+  },
+  {
+   "id": "tiling_check_tutorial",
+   "version": 1,
+   "folder": "tiling_check_tutorial",
+   "category": [
+    "beginner",
+    "tiling"
+   ],
+   "tags": [
+    "tutorial",
+    "tiling",
+    "tileable"
+   ],
+   "difficulty": "beginner",
+   "features": {
+    "loops": false,
+    "tileable": true,
+    "mesh": false,
+    "simulation": false,
+    "flipbook": false,
+    "exportReady": true
+   },
+   "nodesUsed": [
+    "export.mask",
+    "grayscale.noise",
+    "utils.tile"
+   ],
+   "nodeCount": 7,
+   "resolution": [
+    512,
+    512
+   ],
+   "memoryMB": 7.5,
+   "hash": "3b1e4648792ed4d9",
+   "created": "2026-02-01"
+  },
+  {
+   "id": "water_ripples_normal",
+   "version": 1,
+   "folder": "water_ripples_normal",
+   "category": [
+    "water",
+    "simulation",
+    "flipbooks"
+   ],
+   "tags": [
+    "water",
+    "ripple",
+    "normal",
+    "simulation",
+    "loop"
+   ],
+   "difficulty": "intermediate",
+   "features": {
+    "loops": true,
+    "tileable": false,
+    "mesh": false,
+    "simulation": true,
+    "flipbook": true,
+    "exportReady": true
+   },
+   "nodesUsed": [
+    "color.ramp",
+    "export.color",
+    "export.normal",
+    "grayscale.caustics",
+    "simulation.wave",
+    "utils.blend",
+    "utils.levels"
+   ],
+   "nodeCount": 8,
+   "resolution": [
+    512,
+    512
+   ],
+   "memoryMB": 74,
+   "hash": "6f6b08ca1c66fcbd",
+   "created": "2026-02-01"
+  },
+  {
+   "id": "wind_wisps",
+   "version": 1,
+   "folder": "wind_wisps",
+   "category": [
+    "water",
+    "tiling",
+    "flipbooks"
+   ],
+   "tags": [
+    "wind",
+    "vector",
+    "loop",
+    "tileable",
+    "flipbook"
+   ],
+   "difficulty": "intermediate",
+   "features": {
+    "loops": true,
+    "tileable": true,
+    "mesh": false,
+    "simulation": false,
+    "flipbook": true,
+    "exportReady": true
+   },
+   "nodesUsed": [
+    "color.ramp",
+    "export.color",
+    "export.mask",
+    "grayscale.noise",
+    "utils.levels",
+    "vector.advect",
+    "vector.combine",
+    "vector.lic",
+    "vector.noise",
+    "vector.vortex"
+   ],
+   "nodeCount": 10,
+   "resolution": [
+    512,
+    512
+   ],
+   "memoryMB": 9,
+   "hash": "3b930b5a900020bc",
+   "created": "2026-02-01"
+  }
+ ]
+}

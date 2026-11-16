@@ -1,0 +1,9 @@
+node_modules
+dist
+coverage
+package-lock.json
+docs/NODE_REFERENCE.md
+THIRD_PARTY_NOTICES.md
+samples
+public
+*.wgsl

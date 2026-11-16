@@ -1,0 +1,85 @@
+{
+ "id": "tileable_lava_energy",
+ "version": 1,
+ "category": [
+  "environment",
+  "tiling",
+  "flipbooks"
+ ],
+ "tags": [
+  "lava",
+  "tileable",
+  "loop",
+  "normal",
+  "game",
+  "flipbook"
+ ],
+ "difficulty": "advanced",
+ "loops": true,
+ "preview": "color",
+ "thumb": {
+  "node": "color",
+  "frame": 16
+ },
+ "tour": [
+  {
+   "node": "adv",
+   "key": "step1"
+  },
+  {
+   "node": "exportHeight",
+   "key": "step2"
+  }
+ ],
+ "created": "2026-02-01",
+ "i18n": {
+  "en": {
+   "name": "Tileable Lava Energy",
+   "description": "Fractal cells and Worley cracks are flow-map advected by a curl Vector Noise for a seamless loop. Exports height, normal and an emissive mask with the Unreal / Unity / Godot presets; a 4×4 tiling preview is included.",
+   "adapt": "Change the export Engine on each export node, raise Normal strength, or tint the Lava gradient. Keep tiling on.",
+   "tags": {
+    "lava": "lava",
+    "tileable": "tileable",
+    "loop": "loop",
+    "normal": "normal map",
+    "game": "game-ready",
+    "flipbook": "flipbook"
+   },
+   "frames": {
+    "f_inputs": "Inputs",
+    "f_shape": "Shape",
+    "f_motion": "Motion",
+    "f_color": "Color",
+    "f_output": "Output"
+   },
+   "tour": {
+    "step1": "Flow-map advection loops with Phase 0 → 1.",
+    "step2": "Three exports, three engine presets."
+   }
+  },
+  "fa": {
+   "name": "گدازه انرژی کاشی‌پذیر",
+   "description": "سلول‌های فراکتال و ترک‌های ورلی با نویز برداری کرل به‌صورت فلوم‌پ جاری می‌شوند و لوپ بی‌درز می‌سازند. خروجی ارتفاع، نرمال و ماسک نورانی با پریست‌های Unreal / Unity / Godot؛ پیش‌نمایش کاشی ۴×۴ هم هست.",
+   "adapt": "موتور (Engine) هر گره خروجی را تغییر دهید، قدرت نرمال را زیاد کنید یا گرادیان گدازه را رنگ کنید. کاشی‌کاری را روشن نگه دارید.",
+   "tags": {
+    "lava": "گدازه",
+    "tileable": "کاشی‌پذیر",
+    "loop": "لوپ",
+    "normal": "نرمال مپ",
+    "game": "آماده بازی",
+    "flipbook": "فلیپ‌بوک"
+   },
+   "frames": {
+    "f_inputs": "ورودی‌ها",
+    "f_shape": "شکل",
+    "f_motion": "حرکت",
+    "f_color": "رنگ",
+    "f_output": "خروجی"
+   },
+   "tour": {
+    "step1": "ادوکشن فلوم‌پ با فاز ۰ تا ۱ لوپ می‌شود.",
+    "step2": "سه خروجی، سه پریست موتور."
+   }
+  }
+ }
+}

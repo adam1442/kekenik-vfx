@@ -1,0 +1,93 @@
+{
+ "id": "energy_beam_mesh",
+ "version": 1,
+ "category": [
+  "energy",
+  "meshes",
+  "magic"
+ ],
+ "tags": [
+  "beam",
+  "mesh",
+  "sweep",
+  "spline",
+  "energy"
+ ],
+ "difficulty": "intermediate",
+ "loops": true,
+ "preview": "tex",
+ "thumb": {
+  "node": "tex",
+  "frame": 8
+ },
+ "view": {
+  "mesh": "sweep",
+  "material": "tex",
+  "mat": {
+   "blend": "additive",
+   "doubleSided": true,
+   "scroll": [
+    0,
+    -0.6
+   ]
+  },
+  "display": "unlit"
+ },
+ "tour": [
+  {
+   "node": "profile",
+   "key": "step1"
+  },
+  {
+   "node": "sweep",
+   "key": "step2"
+  }
+ ],
+ "created": "2026-02-01",
+ "i18n": {
+  "en": {
+   "name": "Energy Beam Mesh",
+   "description": "A star Profile drawn with Spline Shape is connected to the Sweep Profile pin. Scale and twist curves shape the beam, vertex colour gives a gradient, and a scrolling noise texture is previewed with an additive material.",
+   "adapt": "Edit the profile (points / inner radius), the path with the 3D gizmo, or the curves. The texture scroll is a material setting in the 3D viewport.",
+   "tags": {
+    "beam": "beam",
+    "mesh": "mesh",
+    "sweep": "sweep",
+    "spline": "spline",
+    "energy": "energy"
+   },
+   "frames": {
+    "f_mesh": "Mesh",
+    "f_shape": "Shape",
+    "f_color": "Color",
+    "f_output": "Output"
+   },
+   "tour": {
+    "step1": "Profile drawn as a Spline Shape.",
+    "step2": "Scale + twist curves, vertex colour gradient."
+   }
+  },
+  "fa": {
+   "name": "مش پرتو انرژی",
+   "description": "یک پروفایل ستاره‌ای که با Spline Shape رسم شده به پین Profile گره Sweep وصل است. منحنی‌های مقیاس و پیچش شکل پرتو را می‌سازند، رنگ رأس گرادیان می‌دهد و تکسچر نویز متحرک با متریال جمعی پیش‌نمایش می‌شود.",
+   "adapt": "پروفایل (تعداد نقاط / شعاع داخلی)، مسیر با گیزمو سه‌بعدی یا منحنی‌ها را ویرایش کنید. اسکرول تکسچر تنظیم متریال در ویوپورت سه‌بعدی است.",
+   "tags": {
+    "beam": "پرتو",
+    "mesh": "مش",
+    "sweep": "سوئیپ",
+    "spline": "اسپلاین",
+    "energy": "انرژی"
+   },
+   "frames": {
+    "f_mesh": "مش",
+    "f_shape": "شکل",
+    "f_color": "رنگ",
+    "f_output": "خروجی"
+   },
+   "tour": {
+    "step1": "پروفایل که به‌صورت Spline Shape رسم شده.",
+    "step2": "منحنی مقیاس + پیچش، گرادیان رنگ رأس."
+   }
+  }
+ }
+}

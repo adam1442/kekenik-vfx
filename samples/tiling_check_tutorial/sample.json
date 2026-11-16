@@ -1,0 +1,55 @@
+{
+ "id": "tiling_check_tutorial",
+ "version": 1,
+ "category": [
+  "beginner",
+  "tiling"
+ ],
+ "tags": [
+  "tutorial",
+  "tiling",
+  "tileable"
+ ],
+ "difficulty": "beginner",
+ "roleFrames": false,
+ "preview": "viewB",
+ "thumb": {
+  "node": "viewB"
+ },
+ "tour": [],
+ "created": "2026-02-01",
+ "i18n": {
+  "en": {
+   "name": "Tiling Check (tutorial)",
+   "description": "The same noise generated with Tiling off, on, and horizontal-only, each shown as a 3×3 tiling preview so you can see the seams. Node tiling modes override the graph setting.",
+   "adapt": "In any node: Texture tab → Tiling → Absolute. Always check the 3×3 preview before exporting a tiling texture.",
+   "tags": {
+    "tutorial": "tutorial",
+    "tiling": "tiling",
+    "tileable": "tileable"
+   },
+   "frames": {
+    "f_off": "A · Tiling off: seams are visible",
+    "f_on": "B · Tiling on: seamless",
+    "f_horiz": "C · Horizontal only: seams on top / bottom"
+   },
+   "tour": {}
+  },
+  "fa": {
+   "name": "بررسی کاشی‌کاری (آموزش)",
+   "description": "همان نویز با کاشی‌کاری خاموش، روشن و فقط افقی، که هرکدام به‌صورت پیش‌نمایش ۳×۳ نشان داده می‌شود تا درزها دیده شوند. حالت کاشی‌کاری گره تنظیم گراف را بازنویسی می‌کند.",
+   "adapt": "در هر گره: تب Texture ← Tiling ← Absolute. پیش از خروجی گرفتن از تکسچر کاشی‌پذیر همیشه پیش‌نمایش ۳×۳ را ببینید.",
+   "tags": {
+    "tutorial": "آموزش",
+    "tiling": "کاشی‌کاری",
+    "tileable": "کاشی‌پذیر"
+   },
+   "frames": {
+    "f_off": "الف · کاشی‌کاری خاموش: درزها دیده می‌شوند",
+    "f_on": "ب · کاشی‌کاری روشن: بدون درز",
+    "f_horiz": "پ · فقط افقی: درز در بالا و پایین"
+   },
+   "tour": {}
+  }
+ }
+}

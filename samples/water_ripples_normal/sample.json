@@ -1,0 +1,82 @@
+{
+ "id": "water_ripples_normal",
+ "version": 1,
+ "category": [
+  "water",
+  "simulation",
+  "flipbooks"
+ ],
+ "tags": [
+  "water",
+  "ripple",
+  "normal",
+  "simulation",
+  "loop"
+ ],
+ "difficulty": "intermediate",
+ "loops": true,
+ "preview": "water",
+ "thumb": {
+  "node": "water",
+  "frame": 40
+ },
+ "tour": [
+  {
+   "node": "wave",
+   "key": "step1"
+  },
+  {
+   "node": "exportNormal",
+   "key": "step2"
+  }
+ ],
+ "created": "2026-02-01",
+ "i18n": {
+  "en": {
+   "name": "Water Ripples + Normal",
+   "description": "Wave simulation with two animated impulse sources (pulse rates fit the loop). Height drives a water Ramp blended with caustics; the simulation normal is exported as a normal map.",
+   "adapt": "Change Damping or Wave speed, move the emitters, set Boundary to Periodic for a tiling pond, and adjust the caustic opacity.",
+   "tags": {
+    "water": "water",
+    "ripple": "ripples",
+    "normal": "normal map",
+    "simulation": "simulation",
+    "loop": "loop"
+   },
+   "frames": {
+    "f_sim": "Simulation",
+    "f_inputs": "Inputs",
+    "f_shape": "Shape",
+    "f_color": "Color",
+    "f_output": "Output"
+   },
+   "tour": {
+    "step1": "Two pulsing emitters; frequency × loop length = whole pulses.",
+    "step2": "The wave normal, exported for the engine."
+   }
+  },
+  "fa": {
+   "name": "موج‌های آب + نرمال",
+   "description": "شبیه‌سازی موج با دو منبع ضربه متحرک (نرخ ضربه‌ها با لوپ هماهنگ است). ارتفاع رمپ آب را می‌سازد و با کاستیک ترکیب می‌شود؛ نرمال شبیه‌سازی به‌صورت نرمال مپ خروجی می‌گیرد.",
+   "adapt": "میرایی یا سرعت موج را تغییر دهید، منابع را جابه‌جا کنید، برای برکه کاشی‌پذیر مرز را Periodic کنید و کدری کاستیک را تنظیم کنید.",
+   "tags": {
+    "water": "آب",
+    "ripple": "موج",
+    "normal": "نرمال مپ",
+    "simulation": "شبیه‌سازی",
+    "loop": "لوپ"
+   },
+   "frames": {
+    "f_sim": "شبیه‌سازی",
+    "f_inputs": "ورودی‌ها",
+    "f_shape": "شکل",
+    "f_color": "رنگ",
+    "f_output": "خروجی"
+   },
+   "tour": {
+    "step1": "دو منبع ضربه‌ای؛ فرکانس × طول لوپ = تعداد صحیح ضربه.",
+    "step2": "نرمال موج، آماده خروجی برای موتور."
+   }
+  }
+ }
+}

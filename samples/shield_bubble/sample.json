@@ -1,0 +1,94 @@
+{
+ "id": "shield_bubble",
+ "version": 1,
+ "category": [
+  "energy",
+  "meshes",
+  "magic"
+ ],
+ "tags": [
+  "shield",
+  "mesh",
+  "energy",
+  "ripple",
+  "simulation",
+  "loop"
+ ],
+ "difficulty": "advanced",
+ "loops": true,
+ "preview": "color",
+ "thumb": {
+  "node": "color",
+  "frame": 20
+ },
+ "view": {
+  "mesh": "vc",
+  "material": "color",
+  "mat": {
+   "blend": "additive",
+   "doubleSided": true
+  },
+  "display": "unlit"
+ },
+ "tour": [
+  {
+   "node": "wave",
+   "key": "step1"
+  },
+  {
+   "node": "vc",
+   "key": "step2"
+  }
+ ],
+ "created": "2026-02-01",
+ "i18n": {
+  "en": {
+   "name": "Shield Bubble",
+   "description": "A sphere mesh with a fresnel-like vertex-colour gradient, a hex Grid mask and a hit ripple from the Wave simulation, all in UV space. The 3D viewport shows the additive material.",
+   "adapt": "Move the hit point (Emitter 1) to where the shield is struck, change hex cells, or tint the Ramp.",
+   "tags": {
+    "shield": "shield",
+    "mesh": "mesh",
+    "energy": "energy",
+    "ripple": "ripples",
+    "simulation": "simulation",
+    "loop": "loop"
+   },
+   "frames": {
+    "f_mesh": "Mesh",
+    "f_shape": "Shape",
+    "f_sim": "Simulation",
+    "f_color": "Color",
+    "f_output": "Output"
+   },
+   "tour": {
+    "step1": "The hit ripple lives in UV space (periodic).",
+    "step2": "Vertex colour acts as a fresnel-like rim."
+   }
+  },
+  "fa": {
+   "name": "حباب سپر",
+   "description": "مش کره با گرادیان رنگ رأس شبیه فرنل، ماسک شبکه شش‌ضلعی و موج برخورد از شبیه‌سازی Wave، همه در فضای UV. ویوپورت سه‌بعدی متریال جمعی را نشان می‌دهد.",
+   "adapt": "نقطه برخورد (Emitter 1) را به محل ضربه ببرید، تعداد خانه‌ها را عوض کنید یا رمپ را رنگ‌آمیزی کنید.",
+   "tags": {
+    "shield": "سپر",
+    "mesh": "مش",
+    "energy": "انرژی",
+    "ripple": "موج",
+    "simulation": "شبیه‌سازی",
+    "loop": "لوپ"
+   },
+   "frames": {
+    "f_mesh": "مش",
+    "f_shape": "شکل",
+    "f_sim": "شبیه‌سازی",
+    "f_color": "رنگ",
+    "f_output": "خروجی"
+   },
+   "tour": {
+    "step1": "موج برخورد در فضای UV است (دوره‌ای).",
+    "step2": "رنگ رأس نقش لبه شبیه فرنل را بازی می‌کند."
+   }
+  }
+ }
+}

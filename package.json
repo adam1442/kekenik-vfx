@@ -1,0 +1,68 @@
+{
+  "name": "kekenik-vfx",
+  "version": "1.0.0",
+  "description": "Kekenik VFX: free, open-source, node-based procedural texture, mesh, simulation and flipbook authoring that runs entirely in the browser on WebGPU.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "author": "adam1442 <hossein.r.1442@gmail.com>",
+  "homepage": "https://adam1442.github.io/kekenik-vfx/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adam1442/kekenik-vfx.git"
+  },
+  "bugs": {
+    "url": "https://github.com/adam1442/kekenik-vfx/issues",
+    "email": "hossein.r.1442@gmail.com"
+  },
+  "keywords": [
+    "webgpu",
+    "vfx",
+    "procedural",
+    "node-editor",
+    "threejs",
+    "typescript",
+    "wgsl",
+    "texture",
+    "flipbook",
+    "game-development"
+  ],
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run typecheck && npm run lint && npm run i18n:audit && npm run test",
+    "notices": "node tools/generate-notices.mjs",
+    "size": "node tools/size-report.mjs dist",
+    "i18n:audit": "node tools/i18n-audit.mjs",
+    "docs:nodes": "GEN_DOCS=1 vitest run tests/docs.test.ts",
+    "samples:gen": "GEN_SAMPLES=1 vitest run tests/samples-gen.test.ts",
+    "samples:index": "GEN_SAMPLES=index vitest run tests/samples-gen.test.ts",
+    "samples:validate": "vitest run tests/samples-validate.test.ts"
+  },
+  "dependencies": {
+    "fflate": "0.8.2",
+    "three": "0.187.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "22.19.17",
+    "@types/three": "0.187.0",
+    "@webgpu/types": "0.1.74",
+    "eslint": "10.14.0",
+    "prettier": "3.10.1",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.72.2",
+    "vite": "7.3.7",
+    "vitest": "4.1.12"
+  }
+}

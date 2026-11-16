@@ -1,0 +1,82 @@
+{
+ "id": "fireball_explosion",
+ "version": 1,
+ "category": [
+  "fire",
+  "flipbooks",
+  "simulation"
+ ],
+ "tags": [
+  "fire",
+  "smoke",
+  "explosion",
+  "fluid",
+  "flipbook",
+  "packed"
+ ],
+ "difficulty": "advanced",
+ "preview": "preview",
+ "thumb": {
+  "node": "preview",
+  "frame": 14
+ },
+ "tour": [
+  {
+   "node": "fluid",
+   "key": "step1"
+  },
+  {
+   "node": "pack",
+   "key": "step2"
+  }
+ ],
+ "created": "2026-02-01",
+ "i18n": {
+  "en": {
+   "name": "Fireball Explosion",
+   "description": "Fluid 2D explosion preset with an expansion burst. Fire and smoke are split into two layers and packed as RGBA (R fire, G smoke, B soot, A opacity) in one flipbook; a lit preview is also exported.",
+   "adapt": "Raise Expansion / Temperature for a bigger blast, then re-tune the Smoke Levels. Unpack the layers in your shader: R = emissive fire, G = lit smoke.",
+   "tags": {
+    "fire": "fire",
+    "smoke": "smoke",
+    "explosion": "explosion",
+    "fluid": "fluid",
+    "flipbook": "flipbook",
+    "packed": "channel packed"
+   },
+   "frames": {
+    "f_sim": "Simulation",
+    "f_shape": "Shape",
+    "f_output": "Output",
+    "f_color": "Color"
+   },
+   "tour": {
+    "step1": "One-shot explosion: a burst emitter with expansion.",
+    "step2": "Fire, smoke and soot packed into RGB; alpha = max."
+   }
+  },
+  "fa": {
+   "name": "انفجار گلوله آتش",
+   "description": "پریست انفجار سیال دوبعدی با انبساط انفجاری. آتش و دود در دو لایه جدا شده و به‌صورت RGBA (R آتش، G دود، B دوده، A کدری) در یک فلیپ‌بوک بسته‌بندی می‌شوند؛ پیش‌نمایش رنگی هم خروجی می‌گیرد.",
+   "adapt": "برای انفجار بزرگ‌تر انبساط و دما را زیاد کنید و سپس Smoke Levels را تنظیم کنید. در شیدر: R = آتش نورانی، G = دود نورخور.",
+   "tags": {
+    "fire": "آتش",
+    "smoke": "دود",
+    "explosion": "انفجار",
+    "fluid": "سیال",
+    "flipbook": "فلیپ‌بوک",
+    "packed": "کانال‌پک"
+   },
+   "frames": {
+    "f_sim": "شبیه‌سازی",
+    "f_shape": "شکل",
+    "f_output": "خروجی",
+    "f_color": "رنگ"
+   },
+   "tour": {
+    "step1": "انفجار تک‌پخش: منبع انفجاری با انبساط.",
+    "step2": "آتش، دود و دوده در RGB؛ آلفا = بیشینه."
+   }
+  }
+ }
+}

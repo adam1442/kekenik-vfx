@@ -1,0 +1,95 @@
+/* profiler, HUD, help, settings, safe mode, accessibility. */
+.k-hud {
+  position: fixed;
+  top: 2.4rem;
+  inset-inline-end: 0.8rem;
+  z-index: 9000;
+  pointer-events: none;
+  background: rgba(16, 17, 20, 0.82);
+  border: 1px solid var(--line2);
+  border-radius: var(--radius-lg);
+  padding: 0.4rem 0.6rem;
+  box-shadow: var(--shadow-sm);
+}
+.k-hud-body {
+  margin: 0;
+  font: var(--fs-xs) var(--mono);
+  color: var(--text);
+  white-space: pre;
+}
+.k-prof-area { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; }
+.k-prof-canvas { display: block; flex: none; background: var(--bg1); }
+.k-prof-info { padding: 0.2rem 0.5rem; font-size: var(--fs-xs); min-height: 1.2rem; border-bottom: 1px solid var(--line); }
+.k-prof-table { flex: 1; min-height: 0; overflow: auto; font-size: var(--fs-sm); }
+.k-prof-row { display: grid; grid-template-columns: 1.6fr 1.3fr 0.8fr 0.7fr 0.7fr 0.6fr 0.8fr; gap: 0.5rem; padding: 0.15rem 0.6rem; border-bottom: 1px solid var(--line); cursor: default; }
+.k-prof-row.p2 { grid-template-columns: 3fr 0.7fr 0.6fr; }
+.k-prof-row.head { color: var(--dim); position: sticky; top: 0; background: var(--bg2); }
+.k-prof-row:not(.head):hover { background: var(--bg3); }
+.k-prof-row.error { color: var(--bad); }
+.k-prof-row.cached { color: var(--dim); }
+.k-prof-kv { display: flex; justify-content: space-between; gap: 1rem; padding: 0.2rem 0.6rem; border-bottom: 1px solid var(--line); }
+.k-prof-kv.bad b { color: var(--bad); }
+.k-empty { padding: 1rem; color: var(--dim); text-align: center; }
+
+.k-help-body { display: flex; flex: 1; min-height: 0; }
+.k-help-list { width: 38%; min-width: 9rem; border-inline-end: 1px solid var(--line); }
+.k-help-pane, .k-help-pad { flex: 1; padding: 0.5rem 0.8rem; overflow: auto; }
+.k-help-item { padding: 0.2rem 0.6rem; cursor: pointer; }
+.k-help-item:hover { background: var(--bg3); }
+.k-help-item.on { background: var(--accent-bg); }
+.k-help-line { padding: 0.12rem 0; }
+.k-help-line code, .k-help-detail code { color: var(--accent2); font-family: var(--mono); font-size: var(--fs-xs); }
+.k-help-tab { margin-top: 0.4rem; color: var(--accent2); font-weight: 600; }
+.k-help-detail h3, .k-help-pad h3 { margin: 0 0 0.2rem; }
+.k-help-detail h4, .k-help-pad h4 { margin: 0.7rem 0 0.2rem; color: var(--text2); }
+kbd { font: var(--fs-xs) var(--mono); background: var(--bg3); border: 1px solid var(--line2); border-radius: var(--radius); padding: 0 0.3rem; }
+
+.k-settings { padding-top: 0.5rem; display: flex; flex-direction: column; gap: 0.2rem; }
+.k-set-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.3rem 0; border-bottom: 1px solid var(--line); }
+.k-set-label { color: var(--text); }
+.k-set-ctl { display: inline-flex; align-items: center; gap: 0.4rem; }
+.k-set-val { min-width: 3rem; text-align: end; color: var(--text2); font-family: var(--mono); }
+.k-set-note { padding-top: 0.5rem; font-size: var(--fs-xs); }
+.k-swatch { width: 1.1rem; height: 1.1rem; border-radius: 50%; border: 1px solid var(--line2); padding: 0; cursor: pointer; }
+.k-swatch:focus-visible { outline: 0.167rem solid var(--text); outline-offset: 0.167rem; }
+.k-settings select, .k-settings input[type='number'] { background: var(--bg3); color: var(--text); border: 1px solid var(--line2); border-radius: var(--radius); padding: 0.15rem 0.3rem; }
+
+.k-panel-error { padding: 1rem; display: flex; flex-direction: column; gap: 0.5rem; color: var(--text); }
+.k-panel-error pre { white-space: pre-wrap; color: var(--bad); font: var(--fs-xs) var(--mono); margin: 0; }
+.k-panel-error.safe { color: var(--text2); }
+.k-safe-banner { background: var(--warn); color: #1a1405; padding: 0.15rem 0.6rem; font-size: var(--fs-sm); font-weight: 600; text-align: center; }
+
+/* ---- accessibility ---- */
+:focus-visible { outline: 0.167rem solid var(--accent2); outline-offset: 1px; }
+button, [role='tab'], select, input { touch-action: manipulation; }
+canvas { touch-action: none; }
+.reduce-motion *, .reduce-motion *::before, .reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+@media (pointer: coarse) {
+  .k-ibtn, .k-tabs button, button { min-height: 1.9rem; }
+}
+.k-panel-loading { display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 1rem; height: 100%; color: var(--text2); flex-direction: column; }
+.k-panel-loading pre { white-space: pre-wrap; color: var(--bad); font: var(--fs-xs) var(--mono); margin: 0; }
+
+/* RTL (Persian). Panel chrome mirrors through dir="rtl"; the graph canvas, timeline, curve / histogram editors, numeric fields and viewports stay LTR. */
+html[dir='rtl'] canvas,
+html[dir='rtl'] input[type='number'],
+html[dir='rtl'] .k-hist,
+html[dir='rtl'] [class*='k-graph'],
+html[dir='rtl'] [class*='k-timeline'],
+html[dir='rtl'] [class*='k-curve'],
+html[dir='rtl'] [class*='k-vp'],
+html[dir='rtl'] [class*='k-num'] {
+  direction: ltr;
+}
+html[dir='rtl'] .k-prow .lbl {
+  text-align: start;
+  padding-inline-start: 0;
+}

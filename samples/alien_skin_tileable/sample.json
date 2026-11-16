@@ -1,0 +1,66 @@
+{
+ "id": "alien_skin_tileable",
+ "version": 1,
+ "category": [
+  "environment",
+  "tiling",
+  "simulation"
+ ],
+ "tags": [
+  "skin",
+  "organic",
+  "tileable",
+  "normal",
+  "packed",
+  "simulation"
+ ],
+ "difficulty": "intermediate",
+ "preview": "color",
+ "thumb": {
+  "node": "color"
+ },
+ "tour": [],
+ "created": "2026-02-01",
+ "i18n": {
+  "en": {
+   "name": "Alien Skin (tileable)",
+   "description": "Reaction-Diffusion (coral pattern, periodic) becomes a height map; Normal Create and a Color Ramp turn it into a skin. Exports colour, normal and a packed mask (R height, G edges, B cavity).",
+   "adapt": "Try Feed 0.029 / Kill 0.057 for a maze pattern. More Warm-up gives a more settled pattern; keep Periodic on for tiling.",
+   "tags": {
+    "skin": "skin",
+    "organic": "organic",
+    "tileable": "tileable",
+    "normal": "normal map",
+    "packed": "channel packed",
+    "simulation": "simulation"
+   },
+   "frames": {
+    "f_sim": "Simulation",
+    "f_shape": "Shape",
+    "f_color": "Color",
+    "f_output": "Output"
+   },
+   "tour": {}
+  },
+  "fa": {
+   "name": "پوست بیگانه (کاشی‌پذیر)",
+   "description": "واکنش-نفوذ (الگوی مرجان، دوره‌ای) به نقشه ارتفاع تبدیل می‌شود؛ Normal Create و رمپ رنگی آن را به پوست تبدیل می‌کنند. خروجی: رنگ، نرمال و ماسک بسته‌بندی‌شده (R ارتفاع، G لبه‌ها، B حفره).",
+   "adapt": "برای الگوی هزارتو Feed ۰٫۰۲۹ و Kill ۰٫۰۵۷ را امتحان کنید. گرم‌کردن بیشتر الگو را پایدارتر می‌کند؛ برای کاشی‌پذیری Periodic را روشن نگه دارید.",
+   "tags": {
+    "skin": "پوست",
+    "organic": "ارگانیک",
+    "tileable": "کاشی‌پذیر",
+    "normal": "نرمال مپ",
+    "packed": "کانال‌پک",
+    "simulation": "شبیه‌سازی"
+   },
+   "frames": {
+    "f_sim": "شبیه‌سازی",
+    "f_shape": "شکل",
+    "f_color": "رنگ",
+    "f_output": "خروجی"
+   },
+   "tour": {}
+  }
+ }
+}

@@ -1,0 +1,82 @@
+{
+ "id": "wind_wisps",
+ "version": 1,
+ "category": [
+  "water",
+  "tiling",
+  "flipbooks"
+ ],
+ "tags": [
+  "wind",
+  "vector",
+  "loop",
+  "tileable",
+  "flipbook"
+ ],
+ "difficulty": "intermediate",
+ "loops": true,
+ "preview": "tint",
+ "thumb": {
+  "node": "tint",
+  "frame": 20
+ },
+ "tour": [
+  {
+   "node": "flow",
+   "key": "step1"
+  },
+  {
+   "node": "adv",
+   "key": "step2"
+  }
+ ],
+ "created": "2026-02-01",
+ "i18n": {
+  "en": {
+   "name": "Wind Wisps",
+   "description": "Curl Vector Noise plus Vortex fields drive a LIC streak pattern, which Vector Advect flows around a seamless loop (flow-map mode). Outputs a tileable looping mask.",
+   "adapt": "Add more vortices (W2..W4), lengthen the LIC streaks, or feed a different pattern into Advect. The loop is the Phase keyframes 0 → 1.",
+   "tags": {
+    "wind": "wind",
+    "vector": "vector field",
+    "loop": "loop",
+    "tileable": "tileable",
+    "flipbook": "flipbook"
+   },
+   "frames": {
+    "f_inputs": "Inputs",
+    "f_motion": "Motion",
+    "f_shape": "Shape",
+    "f_color": "Color",
+    "f_output": "Output"
+   },
+   "tour": {
+    "step1": "Curl noise + vortices form one flow field.",
+    "step2": "Flow-map advection: Phase 0 → 1 loops seamlessly."
+   }
+  },
+  "fa": {
+   "name": "رشته‌های باد",
+   "description": "نویز برداری کرل و میدان‌های گردابه الگوی رگه‌های LIC را می‌سازند و Vector Advect آن را در یک لوپ بی‌درز (حالت فلوم‌پ) جاری می‌کند. خروجی: ماسک کاشی‌پذیر لوپ.",
+   "adapt": "گردابه‌های بیشتر (W2..W4) اضافه کنید، رگه‌های LIC را بلندتر کنید یا الگوی دیگری به Advect بدهید. لوپ همان کلیدهای Phase از ۰ تا ۱ است.",
+   "tags": {
+    "wind": "باد",
+    "vector": "میدان برداری",
+    "loop": "لوپ",
+    "tileable": "کاشی‌پذیر",
+    "flipbook": "فلیپ‌بوک"
+   },
+   "frames": {
+    "f_inputs": "ورودی‌ها",
+    "f_motion": "حرکت",
+    "f_shape": "شکل",
+    "f_color": "رنگ",
+    "f_output": "خروجی"
+   },
+   "tour": {
+    "step1": "نویز کرل و گردابه‌ها یک میدان جریان می‌سازند.",
+    "step2": "ادوکشن فلوم‌پ: فاز ۰ تا ۱ بدون درز لوپ می‌شود."
+   }
+  }
+ }
+}

@@ -1,0 +1,36 @@
+/* Viewport overlay mini-toolbar (spline tools). Sizes in rem (UI scale), colours from theme tokens. */
+.k-gz-toolbar {
+  position: absolute;
+  inset-block-start: 0.5rem;
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 0.167rem;
+  padding: 0.167rem;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  max-width: calc(100% - 1rem);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.k-gz-btn {
+  min-width: 1.833rem;
+  height: 1.833rem;
+  padding: 0 0.333rem;
+  border: 0;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--text2);
+  font-size: var(--fs-lg);
+  line-height: 1;
+  cursor: pointer;
+  transition: background var(--dur, 120ms), color var(--dur, 120ms);
+}
+.k-gz-btn:hover:not(:disabled) { background: var(--bg4); color: var(--text); }
+.k-gz-btn.active { background: var(--accent-bg); color: var(--accent2); }
+.k-gz-btn:disabled { opacity: 0.4; cursor: default; }
+.k-gz-sep { width: 1px; align-self: stretch; margin: 0.167rem 0.167rem; background: var(--line); }

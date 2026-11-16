@@ -1,0 +1,9 @@
+/* keyframe button + animated row colours (blue = animated, yellow = key on this frame, red tint = auto-key armed) */
+.k-prow .k-key { opacity: 0.45; color: var(--text-dim, #8b909c); }
+.k-prow:hover .k-key { opacity: 0.9; }
+.k-prow .k-key.animated { opacity: 1; color: #6fa3ff; }
+.k-prow .k-key.keyed { opacity: 1; color: #ffcf5a; }
+.k-prow.anim .lbl { color: #8fb4ff; }
+.k-panel-scroll.autokey .k-prow .k-key { opacity: 0.8; color: #e0525f; }
+.k-panel-scroll.autokey .k-prow .k-key.animated { color: #6fa3ff; }
+.k-panel-scroll.autokey .k-prow .k-key.keyed { color: #ffcf5a; }
