@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { Graph } from '../src/engine/graph/graph';
 import { buildPlan } from '../src/engine/graph/plan';
 import { noiseDisplace, type NoiseDisplaceParams } from '../src/engine/mesh/deform';
