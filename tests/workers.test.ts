@@ -127,7 +127,9 @@ describe('worker protocol + determinism', () => {
     expect(defaultPoolSize(2)).toBe(1);
     expect(defaultPoolSize(4)).toBe(3);
     expect(defaultPoolSize(32)).toBe(4);
+    vi.stubGlobal('navigator', {});
     expect(defaultPoolSize(undefined)).toBe(1);
+    vi.unstubAllGlobals();
   });
 });
 
